@@ -3,5 +3,109 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "catalog-fm-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/catalog-fm-app",
+      "sourceRoot": "projects/catalog-fm-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/catalog-fm-app",
+            "index": "projects/catalog-fm-app/src/index.html",
+            "main": "projects/catalog-fm-app/src/main.ts",
+            "polyfills": "projects/catalog-fm-app/src/polyfills.ts",
+            "tsConfig": "projects/catalog-fm-app/tsconfig.app.json",
+            "inlineStyleLanguage": "less",
+            "assets": [
+              "projects/catalog-fm-app/src/favicon.ico",
+              "projects/catalog-fm-app/src/assets"
+            ],
+            "styles": [
+              "projects/catalog-fm-app/src/styles.less"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/catalog-fm-app/src/environments/environment.ts",
+                  "with": "projects/catalog-fm-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "catalog-fm-app:build:production"
+            },
+            "development": {
+              "browserTarget": "catalog-fm-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "catalog-fm-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/catalog-fm-app/src/test.ts",
+            "polyfills": "projects/catalog-fm-app/src/polyfills.ts",
+            "tsConfig": "projects/catalog-fm-app/tsconfig.spec.json",
+            "karmaConfig": "projects/catalog-fm-app/karma.conf.js",
+            "inlineStyleLanguage": "less",
+            "assets": [
+              "projects/catalog-fm-app/src/favicon.ico",
+              "projects/catalog-fm-app/src/assets"
+            ],
+            "styles": [
+              "projects/catalog-fm-app/src/styles.less"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "catalog-fm-app"
 }

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import * as md5 from 'md5';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HasherService {
   hash(data: string): string {
-    return md5(data);
+    return Md5.hashStr(data);
   }
 }

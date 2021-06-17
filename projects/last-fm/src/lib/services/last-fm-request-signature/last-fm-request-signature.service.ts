@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import * as md5 from 'md5';
+import { HasherService } from 'projects/catalog-fm-utils/src/public-api';
 import { LastFmHttpParams } from '../../models/last-fm-http-params';
 import { LastFmKey } from '../../models/last-fm-key';
 import { LAST_FM_KEY } from '../../tokens/last-fm-key.token';
@@ -8,7 +8,10 @@ import { LAST_FM_KEY } from '../../tokens/last-fm-key.token';
   providedIn: 'root',
 })
 export class LastFmRequestSignatureService {
-  constructor(@Inject(LAST_FM_KEY) private lastFmKey: LastFmKey) {}
+  constructor(
+    @Inject(LAST_FM_KEY) private lastFmKey: LastFmKey,
+    private hasherService: HasherService
+  ) {}
 
   makeSignature(params: LastFmHttpParams): any {
     const allHashData = this.makeRequestDataWithApiKey(params);
@@ -28,7 +31,7 @@ export class LastFmRequestSignatureService {
         .map((key) => key + allHashData[key])
         .join('') + this.lastFmKey.apiSecretKey;
 
-    return md5(stringHash);
+    return this.hasherService.hash(stringHash);
   }
 
   private makeAllUrlData(allHashData: any, hash: string): any {

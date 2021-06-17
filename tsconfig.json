@@ -9,6 +9,10 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
+      "catalog-fm-utils": [
+        "dist/catalog-fm-utils/catalog-fm-utils",
+        "dist/catalog-fm-utils"
+      ],
       "last-fm": [
         "dist/last-fm/last-fm",
         "dist/last-fm"

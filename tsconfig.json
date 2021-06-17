@@ -8,6 +8,12 @@
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "last-fm": [
+        "dist/last-fm/last-fm",
+        "dist/last-fm"
+      ]
+    },
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,

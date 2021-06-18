@@ -1,40 +1,40 @@
 import { TestBed } from '@angular/core/testing';
 import { MOCK_LAST_FM_HTTP_PARAMS } from '../../mocks/last-fm-http-params.mock';
 import { MOCK_LAST_FM_SIGNATURE } from '../../mocks/last-fm-signature.mock';
-import { LastFmRequestSignatureService } from '../last-fm-request-signature/last-fm-request-signature.service';
+import { LastFmRequestSignature } from '../last-fm-request-signature/last-fm-request-signature.service';
 
-import { LastFmHttpService } from './last-fm-http.service';
+import { LastFmHttp } from './last-fm-http.service';
 
-describe('LastFmHttpService', () => {
-  let service: LastFmHttpService;
-  let lastFmRequestSignatureServiceSpy: jasmine.SpyObj<LastFmRequestSignatureService>;
+describe('LastFmHttp', () => {
+  let service: LastFmHttp;
+  let lastFmRequestSignatureSpy: jasmine.SpyObj<LastFmRequestSignature>;
 
-  function makeLastFmRequestSignatureServiceSpy() {
-    lastFmRequestSignatureServiceSpy = TestBed.inject(
-      LastFmRequestSignatureService
-    ) as jasmine.SpyObj<LastFmRequestSignatureService>;
-    lastFmRequestSignatureServiceSpy.makeSignature.and.returnValue({
+  function makeLastFmRequestSignatureSpy() {
+    lastFmRequestSignatureSpy = TestBed.inject(
+      LastFmRequestSignature
+    ) as jasmine.SpyObj<LastFmRequestSignature>;
+    lastFmRequestSignatureSpy.makeSignature.and.returnValue({
       ...MOCK_LAST_FM_SIGNATURE,
       key: 'value with space',
     });
   }
 
   beforeEach(() => {
-    const makeSignatureSpy = jasmine.createSpyObj<LastFmRequestSignatureService>(
-      'LastFmRequestSignatureService',
+    const makeSignatureSpy = jasmine.createSpyObj<LastFmRequestSignature>(
+      'LastFmRequestSignature',
       ['makeSignature']
     );
 
     TestBed.configureTestingModule({
       providers: [
         {
-          provide: LastFmRequestSignatureService,
+          provide: LastFmRequestSignature,
           useValue: makeSignatureSpy,
         },
       ],
     });
-    service = TestBed.inject(LastFmHttpService);
-    makeLastFmRequestSignatureServiceSpy();
+    service = TestBed.inject(LastFmHttp);
+    makeLastFmRequestSignatureSpy();
   });
 
   it('should be created', () => {
@@ -47,11 +47,9 @@ describe('LastFmHttpService', () => {
     expect(url.startsWith(urlSentence)).toBeTrue();
   });
 
-  it('should call LastFmRequestSignatureService.makeSignature with correct params on build url', () => {
+  it('should call LastFmRequestSignature.makeSignature with correct params on build url', () => {
     service.buildUrl(MOCK_LAST_FM_HTTP_PARAMS);
-    expect(lastFmRequestSignatureServiceSpy.makeSignature).toHaveBeenCalledWith(
-      MOCK_LAST_FM_HTTP_PARAMS
-    );
+    expect(lastFmRequestSignatureSpy.makeSignature).toHaveBeenCalledWith(MOCK_LAST_FM_HTTP_PARAMS);
   });
 
   it('should build url with encode', () => {

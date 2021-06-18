@@ -5,10 +5,10 @@ import { MOCK_LAST_FM_KEY } from '../../mocks/last-fm-key.mock';
 import { MOCK_LAST_FM_SIGNATURE } from '../../mocks/last-fm-signature.mock';
 import { LAST_FM_KEY } from '../../tokens/last-fm-key.token';
 
-import { LastFmRequestSignatureService } from './last-fm-request-signature.service';
+import { LastFmRequestSignature } from './last-fm-request-signature.service';
 
-describe('LastFmRequestSignatureService', () => {
-  let service: LastFmRequestSignatureService;
+describe('LastFmRequestSignature', () => {
+  let service: LastFmRequestSignature;
   let hasherServiceSpy: jasmine.SpyObj<HasherService>;
   const hashMockValue = 'hashed';
 
@@ -26,7 +26,7 @@ describe('LastFmRequestSignatureService', () => {
         { provide: LAST_FM_KEY, useValue: MOCK_LAST_FM_KEY },
       ],
     });
-    service = TestBed.inject(LastFmRequestSignatureService);
+    service = TestBed.inject(LastFmRequestSignature);
     makeHasherServiceSpy();
   });
 

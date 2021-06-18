@@ -7,7 +7,7 @@ import { LAST_FM_KEY } from '../../tokens/last-fm-key.token';
 @Injectable({
   providedIn: 'root',
 })
-export class LastFmRequestSignatureService {
+export class LastFmRequestSignature {
   constructor(
     @Inject(LAST_FM_KEY) private lastFmKey: LastFmKey,
     private hasherService: HasherService

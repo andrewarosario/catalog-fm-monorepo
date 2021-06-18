@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { LastFmHttpParams } from '../../models/last-fm-http-params';
-import { LastFmRequestSignatureService } from '../last-fm-request-signature/last-fm-request-signature.service';
+import { LastFmRequestSignature } from '../last-fm-request-signature/last-fm-request-signature.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LastFmHttpService {
+export class LastFmHttp {
   private readonly BASE_URL = 'https://ws.audioscrobbler.com/2.0/';
 
-  constructor(private lastFmRequestSignatureService: LastFmRequestSignatureService) {}
+  constructor(private lastFmRequestSignature: LastFmRequestSignature) {}
 
   buildUrl(params: LastFmHttpParams): string {
-    const signature = this.lastFmRequestSignatureService.makeSignature(params);
+    const signature = this.lastFmRequestSignature.makeSignature(params);
     return this.completeUrl(signature, params.encode);
   }
 

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HasherService } from 'projects/catalog-fm-utils/src/public-api';
+import { HasherService } from 'catalog-fm-utils';
 import { MOCK_LAST_FM_HTTP_PARAMS } from '../../mocks/last-fm-http-params.mock';
 import { MOCK_LAST_FM_KEY } from '../../mocks/last-fm-key.mock';
 import { MOCK_LAST_FM_SIGNATURE } from '../../mocks/last-fm-signature.mock';

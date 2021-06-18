@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { LastFmHttpParams } from '../../models/last-fm-http-params';
-import { LastFmRequestSignature } from '../last-fm-request-signature/last-fm-request-signature.service';
+import { LastFmHttpParams } from '@/models/last-fm-http-params';
+import { LastFmRequestSignature } from '@/services/last-fm-request-signature/last-fm-request-signature.service';
 
 @Injectable({
   providedIn: 'root',

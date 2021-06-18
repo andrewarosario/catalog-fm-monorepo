@@ -16,6 +16,11 @@
       "last-fm": [
         "dist/last-fm/last-fm",
         "dist/last-fm"
+      ],
+      "@/*": [
+        "projects/catalog-fm-app/src/app/*",
+        "projects/last-fm/src/lib/*",
+        "projects/catalog-fm-utils/src/lib/*"
       ]
     },
     "sourceMap": true,

@@ -9,7 +9,7 @@ describe('LastFmHttp', () => {
   let service: LastFmHttp;
   let lastFmRequestSignatureSpy: jasmine.SpyObj<LastFmRequestSignature>;
 
-  function makeLastFmRequestSignatureSpy() {
+  function makeLastFmRequestSignatureSpy(): void {
     lastFmRequestSignatureSpy = jasmine.createSpyObj<LastFmRequestSignature>(
       'LastFmRequestSignature',
       ['makeSignature']

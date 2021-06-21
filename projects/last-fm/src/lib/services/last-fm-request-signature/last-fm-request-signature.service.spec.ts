@@ -11,7 +11,7 @@ describe('LastFmRequestSignature', () => {
   let service: LastFmRequestSignature;
   let hasherServiceSpy: jasmine.SpyObj<HasherService>;
 
-  function makeHasherServiceSpy() {
+  function makeHasherServiceSpy(): void {
     const hashMockValue = 'hashed';
     hasherServiceSpy = jasmine.createSpyObj<HasherService>('HasherService', ['hash']);
     hasherServiceSpy.hash.and.returnValue(hashMockValue);

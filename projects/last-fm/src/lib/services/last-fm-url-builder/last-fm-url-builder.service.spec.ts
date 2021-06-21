@@ -3,10 +3,10 @@ import { MOCK_LAST_FM_HTTP_PARAMS } from '@/mocks/last-fm-http-params.mock';
 import { MOCK_LAST_FM_SIGNATURE } from '@/mocks/last-fm-signature.mock';
 import { LastFmRequestSignature } from '@/services/last-fm-request-signature/last-fm-request-signature.service';
 
-import { LastFmHttp } from './last-fm-http.service';
+import { LastFmUrlBuilder } from './last-fm-url-builder.service';
 
-describe('LastFmHttp', () => {
-  let service: LastFmHttp;
+describe('LastFmUrlBuilder', () => {
+  let service: LastFmUrlBuilder;
   let lastFmRequestSignatureSpy: jasmine.SpyObj<LastFmRequestSignature>;
 
   function makeLastFmRequestSignatureSpy(): void {
@@ -31,7 +31,7 @@ describe('LastFmHttp', () => {
         },
       ],
     });
-    service = TestBed.inject(LastFmHttp);
+    service = TestBed.inject(LastFmUrlBuilder);
   });
 
   it('should be created', () => {

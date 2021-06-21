@@ -1,28 +1,28 @@
 import { MOCK_LAST_FM_HTTP_PARAMS } from '@/mocks/last-fm-http-params.mock';
 import { TestBed } from '@angular/core/testing';
-import { LastFmHttp } from '../last-fm-http/last-fm-http.service';
+import { LastFmUrlBuilder } from '../last-fm-url-builder/last-fm-url-builder.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { LastFmService } from './last-fm.service';
 
 describe('LastFmService', () => {
   let service: LastFmService;
-  let lastFmHttpSpy: jasmine.SpyObj<LastFmHttp>;
+  let lastFmUrlBuilderSpy: jasmine.SpyObj<LastFmUrlBuilder>;
   let httpMock: HttpTestingController;
   const urlMock = 'any_url';
   const getResponseMock = 'GET_RESPONSE';
   const postResponseMock = 'POST_RESPONSE';
 
-  function makeLastFmHttpSpy(): void {
-    lastFmHttpSpy = jasmine.createSpyObj<LastFmHttp>('LastFmHttp', ['buildUrl']);
-    lastFmHttpSpy.buildUrl.and.returnValue(urlMock);
+  function makeLastFmUrlBuilderSpy(): void {
+    lastFmUrlBuilderSpy = jasmine.createSpyObj<LastFmUrlBuilder>('LastFmUrlBuilder', ['buildUrl']);
+    lastFmUrlBuilderSpy.buildUrl.and.returnValue(urlMock);
   }
 
   beforeEach(() => {
-    makeLastFmHttpSpy();
+    makeLastFmUrlBuilderSpy();
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [{ provide: LastFmHttp, useValue: lastFmHttpSpy }],
+      providers: [{ provide: LastFmUrlBuilder, useValue: lastFmUrlBuilderSpy }],
     });
     service = TestBed.inject(LastFmService);
     httpMock = TestBed.inject(HttpTestingController);
@@ -36,14 +36,14 @@ describe('LastFmService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should call LastFmHttp.buildUrl with correct values on get', () => {
+  it('should call LastFmUrlBuilder.buildUrl with correct values on get', () => {
     service.get(MOCK_LAST_FM_HTTP_PARAMS);
-    expect(lastFmHttpSpy.buildUrl).toHaveBeenCalledWith(MOCK_LAST_FM_HTTP_PARAMS);
+    expect(lastFmUrlBuilderSpy.buildUrl).toHaveBeenCalledWith(MOCK_LAST_FM_HTTP_PARAMS);
   });
 
-  it('should call LastFmHttp.buildUrl with correct values on post', () => {
+  it('should call LastFmUrlBuilder.buildUrl with correct values on post', () => {
     service.post(MOCK_LAST_FM_HTTP_PARAMS);
-    expect(lastFmHttpSpy.buildUrl).toHaveBeenCalledWith(MOCK_LAST_FM_HTTP_PARAMS);
+    expect(lastFmUrlBuilderSpy.buildUrl).toHaveBeenCalledWith(MOCK_LAST_FM_HTTP_PARAMS);
   });
 
   it('should return the right data from get function', () => {

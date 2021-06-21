@@ -5,7 +5,7 @@ import { LastFmRequestSignature } from '@/services/last-fm-request-signature/las
 @Injectable({
   providedIn: 'root',
 })
-export class LastFmHttp {
+export class LastFmUrlBuilder {
   private readonly BASE_URL = 'https://ws.audioscrobbler.com/2.0/';
 
   constructor(private lastFmRequestSignature: LastFmRequestSignature) {}

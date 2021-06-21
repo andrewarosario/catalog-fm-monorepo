@@ -10,24 +10,23 @@ import { LastFmRequestSignature } from './last-fm-request-signature.service';
 describe('LastFmRequestSignature', () => {
   let service: LastFmRequestSignature;
   let hasherServiceSpy: jasmine.SpyObj<HasherService>;
-  const hashMockValue = 'hashed';
 
   function makeHasherServiceSpy() {
-    hasherServiceSpy = TestBed.inject(HasherService) as jasmine.SpyObj<HasherService>;
+    const hashMockValue = 'hashed';
+    hasherServiceSpy = jasmine.createSpyObj<HasherService>('HasherService', ['hash']);
     hasherServiceSpy.hash.and.returnValue(hashMockValue);
   }
 
   beforeEach(() => {
-    const hashSpy = jasmine.createSpyObj<HasherService>('HasherService', ['hash']);
+    makeHasherServiceSpy();
 
     TestBed.configureTestingModule({
       providers: [
-        { provide: HasherService, useValue: hashSpy },
+        { provide: HasherService, useValue: hasherServiceSpy },
         { provide: LAST_FM_KEY, useValue: MOCK_LAST_FM_KEY },
       ],
     });
     service = TestBed.inject(LastFmRequestSignature);
-    makeHasherServiceSpy();
   });
 
   it('should be created', () => {

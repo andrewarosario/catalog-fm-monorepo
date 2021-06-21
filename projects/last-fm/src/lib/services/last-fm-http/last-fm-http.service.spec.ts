@@ -10,9 +10,10 @@ describe('LastFmHttp', () => {
   let lastFmRequestSignatureSpy: jasmine.SpyObj<LastFmRequestSignature>;
 
   function makeLastFmRequestSignatureSpy() {
-    lastFmRequestSignatureSpy = TestBed.inject(
-      LastFmRequestSignature
-    ) as jasmine.SpyObj<LastFmRequestSignature>;
+    lastFmRequestSignatureSpy = jasmine.createSpyObj<LastFmRequestSignature>(
+      'LastFmRequestSignature',
+      ['makeSignature']
+    );
     lastFmRequestSignatureSpy.makeSignature.and.returnValue({
       ...MOCK_LAST_FM_SIGNATURE,
       key: 'value with space',
@@ -20,21 +21,17 @@ describe('LastFmHttp', () => {
   }
 
   beforeEach(() => {
-    const makeSignatureSpy = jasmine.createSpyObj<LastFmRequestSignature>(
-      'LastFmRequestSignature',
-      ['makeSignature']
-    );
+    makeLastFmRequestSignatureSpy();
 
     TestBed.configureTestingModule({
       providers: [
         {
           provide: LastFmRequestSignature,
-          useValue: makeSignatureSpy,
+          useValue: lastFmRequestSignatureSpy,
         },
       ],
     });
     service = TestBed.inject(LastFmHttp);
-    makeLastFmRequestSignatureSpy();
   });
 
   it('should be created', () => {

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { MOCK_LAST_FM_HTTP_PARAMS } from '@/mocks/last-fm-http-params.mock';
-import { MOCK_LAST_FM_SIGNATURE } from '@/mocks/last-fm-signature.mock';
-import { LastFmRequestSignature } from '@/services/last-fm-request-signature/last-fm-request-signature.service';
+import { MOCK_LAST_FM_HTTP_PARAMS } from '@/api/mocks/last-fm-http-params.mock';
+import { MOCK_LAST_FM_SIGNATURE } from '@/api/mocks/last-fm-signature.mock';
+import { LastFmRequestSignature } from '@/api/services/last-fm-request-signature/last-fm-request-signature.service';
 
 import { LastFmUrlBuilder } from './last-fm-url-builder.service';
 

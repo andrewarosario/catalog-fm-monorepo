@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { HasherService } from 'catalog-fm-utils';
-import { LastFmHttpParams } from '@/models/last-fm-http-params';
-import { LastFmKey } from '@/models/last-fm-key';
-import { LAST_FM_KEY } from '@/tokens/last-fm-key.token';
+import { LastFmHttpParams } from '@/api/models/last-fm-http-params';
+import { LastFmKey } from '@/api/models/last-fm-key';
+import { LAST_FM_KEY } from '@/api/tokens/last-fm-key.token';
 
 @Injectable({
   providedIn: 'root',

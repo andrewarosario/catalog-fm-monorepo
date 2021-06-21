@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LastFmUrlBuilder } from '@/services/last-fm-url-builder/last-fm-url-builder.service';
-import { LastFmHttpParams } from '@/models/last-fm-http-params';
+import { LastFmUrlBuilder } from '@/api/services/last-fm-url-builder/last-fm-url-builder.service';
+import { LastFmHttpParams } from '@/api/models/last-fm-http-params';
 
 @Injectable({
   providedIn: 'root',

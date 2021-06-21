@@ -1,4 +1,4 @@
-import { MOCK_LAST_FM_HTTP_PARAMS } from '@/mocks/last-fm-http-params.mock';
+import { MOCK_LAST_FM_HTTP_PARAMS } from '@/api/mocks/last-fm-http-params.mock';
 import { TestBed } from '@angular/core/testing';
 import { LastFmUrlBuilder } from '../last-fm-url-builder/last-fm-url-builder.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';

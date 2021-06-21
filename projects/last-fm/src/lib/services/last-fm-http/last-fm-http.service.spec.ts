@@ -3,10 +3,10 @@ import { TestBed } from '@angular/core/testing';
 import { LastFmUrlBuilder } from '../last-fm-url-builder/last-fm-url-builder.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { LastFmService } from './last-fm.service';
+import { LastFmHttp } from './last-fm-http.service';
 
-describe('LastFmService', () => {
-  let service: LastFmService;
+describe('LastFmHttp', () => {
+  let service: LastFmHttp;
   let lastFmUrlBuilderSpy: jasmine.SpyObj<LastFmUrlBuilder>;
   let httpMock: HttpTestingController;
   const urlMock = 'any_url';
@@ -24,7 +24,7 @@ describe('LastFmService', () => {
       imports: [HttpClientTestingModule],
       providers: [{ provide: LastFmUrlBuilder, useValue: lastFmUrlBuilderSpy }],
     });
-    service = TestBed.inject(LastFmService);
+    service = TestBed.inject(LastFmHttp);
     httpMock = TestBed.inject(HttpTestingController);
   });
 

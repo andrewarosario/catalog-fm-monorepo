@@ -7,7 +7,7 @@ import { LastFmHttpParams } from '@/models/last-fm-http-params';
 @Injectable({
   providedIn: 'root',
 })
-export class LastFmService {
+export class LastFmHttp {
   constructor(private http: HttpClient, private lastFmUrlBuilder: LastFmUrlBuilder) {}
 
   public get<T>(data: LastFmHttpParams): Observable<T> {

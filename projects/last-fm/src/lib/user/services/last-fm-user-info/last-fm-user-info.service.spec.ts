@@ -1,6 +1,6 @@
 import { LastFmMethod } from '@/api/enums/last-fm-method';
 import { makeLastFmHttpSpy } from '@/api/services/last-fm-http/last-fm-http.service.mock';
-import { MOCK_LAST_FM_USER_RESPONSE } from '@/user/mocks/last-fm-user-response';
+import { MOCK_LAST_FM_USER_RESPONSE } from '@/user/mocks/last-fm-user-response.mock';
 import { LastFmUserInfoService } from './last-fm-user-info.service';
 
 const makeSut = () => {

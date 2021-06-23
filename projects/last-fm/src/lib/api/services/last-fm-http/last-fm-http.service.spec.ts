@@ -4,14 +4,13 @@ import { LastFmUrlBuilder } from '../last-fm-url-builder/last-fm-url-builder.ser
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { LastFmHttp } from './last-fm-http.service';
+import { MOCK_LAST_FM_RESPONSE } from '@/api/mocks/last-fm-response.mock';
 
 describe('LastFmHttp', () => {
   let service: LastFmHttp;
   let lastFmUrlBuilderSpy: jasmine.SpyObj<LastFmUrlBuilder>;
   let httpMock: HttpTestingController;
   const urlMock = 'any_url';
-  const getResponseMock = 'GET_RESPONSE';
-  const postResponseMock = 'POST_RESPONSE';
 
   function makeLastFmUrlBuilderSpy(): void {
     lastFmUrlBuilderSpy = jasmine.createSpyObj<LastFmUrlBuilder>('LastFmUrlBuilder', ['buildUrl']);
@@ -51,10 +50,10 @@ describe('LastFmHttp', () => {
     service.get(MOCK_LAST_FM_HTTP_PARAMS).subscribe((response) => (returnResponse = response));
 
     const req = httpMock.expectOne(urlMock);
-    req.flush(getResponseMock);
+    req.flush(MOCK_LAST_FM_RESPONSE.get);
 
     expect(req.request.method).toEqual('GET');
-    expect(returnResponse).toBe(getResponseMock);
+    expect(returnResponse).toBe(MOCK_LAST_FM_RESPONSE.get);
   });
 
   it('should return the right data from post function', () => {
@@ -62,9 +61,9 @@ describe('LastFmHttp', () => {
     service.post(MOCK_LAST_FM_HTTP_PARAMS).subscribe((response) => (returnResponse = response));
 
     const req = httpMock.expectOne(urlMock);
-    req.flush(postResponseMock);
+    req.flush(MOCK_LAST_FM_RESPONSE.post);
 
     expect(req.request.method).toEqual('POST');
-    expect(returnResponse).toBe(postResponseMock);
+    expect(returnResponse).toBe(MOCK_LAST_FM_RESPONSE.post);
   });
 });

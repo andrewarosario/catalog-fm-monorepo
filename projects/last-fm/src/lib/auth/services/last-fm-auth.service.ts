@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class LastFmAuthService {
+export class LastFmAuthService implements LastFmAuthService {
   constructor(private lastFmHttp: LastFmHttp) {}
 
   authenticate(token: string): Observable<LastFmAuthResponse> {

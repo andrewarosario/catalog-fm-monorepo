@@ -1,4 +1,4 @@
-import { LastFmUserResponse } from '../models/last-fm-user-response';
+import { LastFmUserResponse } from '../interfaces/last-fm-user-info';
 
 export const MOCK_LAST_FM_USER_RESPONSE: LastFmUserResponse = {
   user: {

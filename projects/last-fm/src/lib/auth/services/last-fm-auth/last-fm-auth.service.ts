@@ -1,7 +1,7 @@
-import { LastFmAuthResponse } from '../../models/last-fm-auth-response';
 import { LastFmMethod } from '@/api/enums/last-fm-method';
 import { LastFmHttpParams } from '@/api/models/last-fm-http-params';
 import { LastFmHttp } from '@/api/services/last-fm-http/last-fm-http.service';
+import { LastFmAuthResponse } from '@/auth/models/last-fm-auth-response';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 

@@ -1,7 +1,7 @@
+import { MOCK_LAST_FM_HTTP_PARAMS } from '@/api/mocks/last-fm-http-params.mock';
+import { MOCK_LAST_FM_KEY } from '@/api/mocks/last-fm-key.mock';
+import { MOCK_LAST_FM_SIGNATURE } from '@/api/mocks/last-fm-signature.mock';
 import { HasherService } from 'catalog-fm-utils';
-import { MOCK_LAST_FM_HTTP_PARAMS } from '../../mocks/last-fm-http-params.mock';
-import { MOCK_LAST_FM_KEY } from '../../mocks/last-fm-key.mock';
-import { MOCK_LAST_FM_SIGNATURE } from '../../mocks/last-fm-signature.mock';
 
 import { LastFmRequestSignature } from './last-fm-request-signature.service';
 

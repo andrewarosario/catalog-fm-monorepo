@@ -1,5 +1,9 @@
 import { Observable } from 'rxjs';
-import { LastFmUserResponse } from '../models/last-fm-user-response';
+import { LastfmUser } from '../models/last-fm-user';
+
+export interface LastFmUserResponse {
+  user: LastfmUser;
+}
 
 export interface LastFmUserInfo {
   getInfo(user: string): Observable<LastFmUserResponse>;

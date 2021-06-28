@@ -15,4 +15,14 @@ export const MOCK_WINDOW = {
       return this._origin;
     },
   },
+  navigator: {
+    _onLine: true,
+    set onLine(status: boolean) {
+      this._onLine = status;
+    },
+    get onLine() {
+      return this._onLine;
+    },
+  },
+  addEventListener(event: string, listener: Function) {},
 };

@@ -22,4 +22,9 @@ describe('ConnectionStatusService', () => {
     MOCK_WINDOW.navigator.onLine = true;
     expect(service.isOnline).toBe(true);
   });
+
+  it('should be offline when navigator.onLine is false', () => {
+    MOCK_WINDOW.navigator.onLine = false;
+    expect(service.isOnline).toBe(false);
+  });
 });

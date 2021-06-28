@@ -14,6 +14,7 @@ describe('LastFmAuthRedirectService', () => {
     setHrefSpy = spyOnProperty(MOCK_WINDOW.location, 'href', 'set');
     TestBed.configureTestingModule({
       providers: [
+        LastFmAuthRedirectService,
         { provide: WINDOW, useValue: MOCK_WINDOW },
         { provide: LAST_FM_KEY, useValue: MOCK_LAST_FM_KEY },
       ],
@@ -26,14 +27,14 @@ describe('LastFmAuthRedirectService', () => {
   });
 
   it('should modify window.location without redirect url', () => {
-    const url = 'http://www.last.fm/api/auth/?api_key=PUBLIC_KEY&cb=http%253A%252F%252Forigin%252F';
+    const url = 'http://www.last.fm/api/auth/?api_key=PUBLIC_KEY&cb=http%3A%2F%2Forigin%2F';
     service.redirect();
     expect(setHrefSpy).toHaveBeenCalledWith(url);
   });
 
   it('should modify window.location with redirect url', () => {
     const redirect = 'redirect';
-    const url = `http://www.last.fm/api/auth/?api_key=PUBLIC_KEY&cb=http%253A%252F%252Forigin%252F${redirect}`;
+    const url = `http://www.last.fm/api/auth/?api_key=PUBLIC_KEY&cb=http%3A%2F%2Forigin%2F${redirect}`;
     service.redirect(redirect);
     expect(setHrefSpy).toHaveBeenCalledWith(url);
   });

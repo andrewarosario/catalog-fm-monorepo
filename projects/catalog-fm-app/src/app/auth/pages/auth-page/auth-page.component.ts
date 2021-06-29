@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { LastFmAuthRedirectService } from 'last-fm';
 
 @Component({
   selector: 'app-auth-page',
   templateUrl: './auth-page.component.html',
-  styleUrls: ['./auth-page.component.less']
+  styleUrls: ['./auth-page.component.less'],
 })
-export class AuthPageComponent implements OnInit {
+export class AuthPageComponent {
+  constructor(private lastFmAuthRedirectService: LastFmAuthRedirectService) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  lastFmRedirect() {
+    this.lastFmAuthRedirectService.redirect('callback');
   }
-
 }

@@ -3,19 +3,15 @@ import { LastFmCallbackAuthGuard } from './last-fm-callback-auth.guard';
 
 const mockActivatedRouteWithToken = (): any => {
   return {
-    route: {
-      queryParams: {
-        token: 'any_token',
-      },
+    queryParams: {
+      token: 'any_token',
     },
   };
 };
 
 const mockActivatedRouteWithoutToken = (): any => {
   return {
-    route: {
-      queryParams: {},
-    },
+    queryParams: {},
   };
 };
 
@@ -33,5 +29,11 @@ describe('LastFmCallbackAuthGuard', () => {
   it('should be created', () => {
     const { guard } = makeSut();
     expect(guard).toBeTruthy();
+  });
+
+  it('should return true when there is token on queryParams', () => {
+    const { guard } = makeSut();
+    const active = guard.canActivate(mockActivatedRouteWithToken());
+    expect(active).toBe(true);
   });
 });

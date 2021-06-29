@@ -42,4 +42,10 @@ describe('LastFmCallbackAuthGuard', () => {
     const active = guard.canActivate(mockActivatedRouteWithoutToken());
     expect(active).toBe(false);
   });
+
+  it('should navigate to /auth when there is no token on queryParams', () => {
+    const { guard, routerSpy } = makeSut();
+    guard.canActivate(mockActivatedRouteWithoutToken());
+    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/auth');
+  });
 });

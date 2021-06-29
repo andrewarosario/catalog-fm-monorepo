@@ -24,6 +24,6 @@ describe('AuthPageComponent', () => {
   it('should call LastFmAuthRedirectService.redirect with correct values when call lastFmRedirect', () => {
     const { component, lastFmAuthRedirectServiceSpy } = makeSut();
     component.lastFmRedirect();
-    expect(lastFmAuthRedirectServiceSpy.redirect).toHaveBeenCalledOnceWith('callback');
+    expect(lastFmAuthRedirectServiceSpy.redirect).toHaveBeenCalledOnceWith('auth/callback');
   });
 });

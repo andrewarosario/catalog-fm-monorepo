@@ -10,6 +10,6 @@ export class AuthPageComponent {
   constructor(private lastFmAuthRedirectService: LastFmAuthRedirectService) {}
 
   lastFmRedirect() {
-    this.lastFmAuthRedirectService.redirect('callback');
+    this.lastFmAuthRedirectService.redirect('auth/callback');
   }
 }

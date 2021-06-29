@@ -36,4 +36,10 @@ describe('LastFmCallbackAuthGuard', () => {
     const active = guard.canActivate(mockActivatedRouteWithToken());
     expect(active).toBe(true);
   });
+
+  it('should return false when there is no token on queryParams', () => {
+    const { guard } = makeSut();
+    const active = guard.canActivate(mockActivatedRouteWithoutToken());
+    expect(active).toBe(false);
+  });
 });

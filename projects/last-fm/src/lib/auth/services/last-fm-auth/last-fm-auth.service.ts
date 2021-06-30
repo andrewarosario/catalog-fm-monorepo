@@ -1,6 +1,7 @@
 import { LastFmMethod } from '@/api/enums/last-fm-method';
 import { LastFmHttpParams } from '@/api/models/last-fm-http-params';
 import { LastFmHttp } from '@/api/services/last-fm-http/last-fm-http.service';
+import { LastFmAuthenticate } from '@/auth/interfaces/last-fm-authenticate';
 import { LastFmAuthResponse } from '@/auth/models/last-fm-auth-response';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class LastFmAuthService implements LastFmAuthService {
+export class LastFmAuthService implements LastFmAuthenticate {
   constructor(private lastFmHttp: LastFmHttp) {}
 
   authenticate(token: string): Observable<LastFmAuthResponse> {

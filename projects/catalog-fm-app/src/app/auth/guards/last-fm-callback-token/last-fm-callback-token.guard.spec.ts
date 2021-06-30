@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { LastFmCallbackAuthGuard } from './last-fm-callback-auth.guard';
+import { LastFmCallbackTokenGuard } from './last-fm-callback-token.guard';
 
 const mockActivatedRouteWithToken = (): any => {
   return {
@@ -21,11 +21,11 @@ const makeRouterSpy = (): jasmine.SpyObj<Router> => {
 
 const makeSut = () => {
   const routerSpy = makeRouterSpy();
-  const guard = new LastFmCallbackAuthGuard(routerSpy);
+  const guard = new LastFmCallbackTokenGuard(routerSpy);
   return { guard, routerSpy };
 };
 
-describe('LastFmCallbackAuthGuard', () => {
+describe('LastFmCallbackTokenGuard', () => {
   it('should be created', () => {
     const { guard } = makeSut();
     expect(guard).toBeTruthy();

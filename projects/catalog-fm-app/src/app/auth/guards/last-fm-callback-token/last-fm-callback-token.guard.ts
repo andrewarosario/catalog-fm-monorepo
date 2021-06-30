@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
-export class LastFmCallbackAuthGuard implements CanActivate {
+export class LastFmCallbackTokenGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot): boolean {

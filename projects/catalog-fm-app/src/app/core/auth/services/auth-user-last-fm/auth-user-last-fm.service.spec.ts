@@ -55,4 +55,11 @@ describe('AuthUserLastFmService', () => {
       expect(storageServiceSpy.setItem).toHaveBeenCalledWith('authUser', mockAuthUser());
     });
   });
+
+  it('should return the correct value from authorize', () => {
+    const { service } = makeSut();
+    service.authenticate('any_token').subscribe((authUser) => {
+      expect(authUser).toEqual(mockAuthUser());
+    });
+  });
 });

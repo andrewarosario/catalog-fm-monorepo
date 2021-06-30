@@ -24,4 +24,10 @@ describe('AuthUserLastFmService', () => {
     const { service } = makeSut();
     expect(service).toBeTruthy();
   });
+
+  it('should call lastFmAuthService.authenticate with correct value', () => {
+    const { service, lastFmAuthServiceSpy } = makeSut();
+    service.authenticate('any_token');
+    expect(lastFmAuthServiceSpy.authenticate).toHaveBeenCalledWith('any_token');
+  });
 });

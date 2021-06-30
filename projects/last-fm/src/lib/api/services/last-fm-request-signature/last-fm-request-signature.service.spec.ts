@@ -7,9 +7,9 @@ import { LastFmRequestSignature } from './last-fm-request-signature.service';
 
 const makeHasherService = (): jasmine.SpyObj<HasherService> => {
   const hashMockValue = 'hashed';
-  const hasherServiceSpy = jasmine.createSpyObj<HasherService>('HasherService', ['hash']);
-  hasherServiceSpy.hash.and.returnValue(hashMockValue);
-  return hasherServiceSpy;
+  const spy = jasmine.createSpyObj<HasherService>('HasherService', ['hash']);
+  spy.hash.and.returnValue(hashMockValue);
+  return spy;
 };
 
 const makeSut = () => {

@@ -1,4 +1,4 @@
-interface LastFmSession {
+export interface LastFmSession {
   name: string;
   key: string;
 }

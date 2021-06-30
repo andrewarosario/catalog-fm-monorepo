@@ -1,9 +1,7 @@
 import { LastFmAuthService } from './last-fm-auth.service';
 import { makeLastFmHttpSpy } from '@/api/services/last-fm-http/last-fm-http.service.mock';
 import { LastFmMethod } from '@/api/enums/last-fm-method';
-import { LastFmAuthResponse } from '@/auth/models/last-fm-auth-response';
-
-const MOCK_LAST_FM_AUTH_RESPONSE: LastFmAuthResponse = { session: { name: 'name', key: 'key' } };
+import { MOCK_LAST_FM_AUTH_RESPONSE } from '@/auth/mocks/last-fm-auth-response.mock';
 
 const makeSut = () => {
   const lastFmHttp = makeLastFmHttpSpy(MOCK_LAST_FM_AUTH_RESPONSE);

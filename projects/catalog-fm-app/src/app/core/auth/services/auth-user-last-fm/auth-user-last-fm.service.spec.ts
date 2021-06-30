@@ -30,4 +30,11 @@ describe('AuthUserLastFmService', () => {
     service.authenticate('any_token');
     expect(lastFmAuthServiceSpy.authenticate).toHaveBeenCalledWith('any_token');
   });
+
+  it('should call store.setLastFmSession with correct value', () => {
+    const { service, store } = makeSut();
+    service.authenticate('any_token').subscribe(() => {
+      expect(store.setLastFmSession).toHaveBeenCalledWith(MOCK_LAST_FM_AUTH_RESPONSE.session);
+    });
+  });
 });

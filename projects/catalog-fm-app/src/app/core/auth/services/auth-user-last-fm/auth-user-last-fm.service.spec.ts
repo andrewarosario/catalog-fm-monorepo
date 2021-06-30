@@ -1,12 +1,10 @@
 import { LastFmAuthService, MOCK_LAST_FM_AUTH_RESPONSE } from 'last-fm';
 import { makeStorageServiceSpy } from 'projects/catalog-fm-app/src/test/last-fm/services/storage.service.mock';
 import { of } from 'rxjs';
-import { AuthUser } from '../../models/auth-user';
+import { mockAuthUser } from '../../mocks/auth-user.store.mock';
 import { AuthUserStore } from '../../store/auth-user.store';
 
 import { AuthUserLastFmService } from './auth-user-last-fm.service';
-
-const mockAuthUser = (): AuthUser => ({ lastFmSession: MOCK_LAST_FM_AUTH_RESPONSE.session });
 
 const makeLastFmAuthService = (): jasmine.SpyObj<LastFmAuthService> => {
   const spy = jasmine.createSpyObj<LastFmAuthService>('LastFmAuthService', ['authenticate']);

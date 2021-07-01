@@ -1,19 +1,15 @@
 import { Router } from '@angular/router';
 import { LastFmCallbackTokenGuard } from './last-fm-callback-token.guard';
 
-const mockActivatedRouteWithToken = (): any => {
-  return {
-    queryParams: {
-      token: 'any_token',
-    },
-  };
-};
+const mockActivatedRouteWithToken = (): any => ({
+  queryParams: {
+    token: 'any_token',
+  },
+});
 
-const mockActivatedRouteWithoutToken = (): any => {
-  return {
-    queryParams: {},
-  };
-};
+const mockActivatedRouteWithoutToken = (): any => ({
+  queryParams: {},
+});
 
 const makeRouterSpy = (): jasmine.SpyObj<Router> => {
   return jasmine.createSpyObj<Router>('Router', ['navigateByUrl']);

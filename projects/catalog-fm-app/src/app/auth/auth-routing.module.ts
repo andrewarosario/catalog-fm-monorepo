@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LastFmCallbackTokenGuard } from './guards/last-fm-callback-token/last-fm-callback-token.guard';
+import { LastFmAuthCallbackCompositeGuard } from './guards/last-fm-auth-callback-composite/last-fm-auth-callback-composite.guard';
 import { AuthCallbackPageComponent } from './pages/auth-callback-page/auth-callback-page.component';
 import { AuthPageComponent } from './pages/auth-page/auth-page.component';
 
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'callback',
-    canActivate: [LastFmCallbackTokenGuard],
+    canActivate: [LastFmAuthCallbackCompositeGuard],
     component: AuthCallbackPageComponent,
   },
 ];

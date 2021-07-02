@@ -1,5 +1,5 @@
 import { makeStorageServiceSpy } from 'projects/catalog-fm-app/src/test/last-fm/services/storage.service.mock';
-import { mockAuthUser } from '../../mocks/auth-user.store.mock';
+import { mockAuthUser } from '../../mocks/auth-user.mock';
 import { makeAuthUserStore } from '../../store/auth-user.store.mock';
 import { LoggedUserLastFmService } from './logged-user-last-fm.service';
 

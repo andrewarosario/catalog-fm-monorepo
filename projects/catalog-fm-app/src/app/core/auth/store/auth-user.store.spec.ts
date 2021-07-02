@@ -1,6 +1,6 @@
 import { MOCK_LAST_FM_AUTH_RESPONSE } from 'last-fm';
 import { take } from 'rxjs/operators';
-import { mockAuthUser } from '../mocks/auth-user.store.mock';
+import { mockAuthUser } from '../mocks/auth-user.mock';
 import { AuthUserStore } from './auth-user.store';
 
 describe('AuthUserStore', () => {

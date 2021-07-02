@@ -1,4 +1,4 @@
-import { mockAuthUser } from '@/core/auth/mocks/auth-user.store.mock';
+import { mockAuthUser } from '@/core/auth/mocks/auth-user.mock';
 import { AuthUserLastFmService } from '@/core/auth/services/auth-user-last-fm/auth-user-last-fm.service';
 import { of } from 'rxjs';
 import { LastFmAuthGuard } from './last-fm-auth.guard';

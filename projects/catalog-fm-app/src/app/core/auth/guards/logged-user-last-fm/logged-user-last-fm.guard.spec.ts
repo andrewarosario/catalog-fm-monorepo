@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { mockAuthUser } from '../../mocks/auth-user.store.mock';
+import { mockAuthUser } from '../../mocks/auth-user.mock';
 import { LoggedUserLastFmService } from '../../services/logged-user-last-fm/logged-user-last-fm.service';
 
 import { LoggedUserLastFmGuard } from './logged-user-last-fm.guard';

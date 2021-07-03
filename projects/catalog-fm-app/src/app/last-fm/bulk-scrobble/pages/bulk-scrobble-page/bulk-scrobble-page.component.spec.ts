@@ -41,4 +41,13 @@ describe('BulkScrobblePageComponent', () => {
     const submitButton = getSubmitButton();
     expect(submitButton.disabled).toBe(false);
   });
+
+  it('should disable button when typing blank text', () => {
+    setFieldValue(fixture, 'scrobble-form', 'value');
+    fixture.detectChanges();
+    setFieldValue(fixture, 'scrobble-form', '');
+    fixture.detectChanges();
+    const submitButton = getSubmitButton();
+    expect(submitButton.disabled).toBe(true);
+  });
 });

@@ -11,6 +11,8 @@ describe('BulkScrobblePageComponent', () => {
   let component: BulkScrobblePageComponent;
   let fixture: ComponentFixture<BulkScrobblePageComponent>;
 
+  const getSubmitButton = (): HTMLButtonElement => findNativeEl(fixture, 'submit');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ReactiveFormsModule],
@@ -29,14 +31,14 @@ describe('BulkScrobblePageComponent', () => {
   });
 
   it('submit button should be disabled on init', () => {
-    const submitButton: HTMLButtonElement = findNativeEl(fixture, 'submit');
+    const submitButton = getSubmitButton();
     expect(submitButton.disabled).toBe(true);
   });
 
   it('should enable button when typing some text', () => {
     setFieldValue(fixture, 'scrobble-form', 'value');
     fixture.detectChanges();
-    const submitButton: HTMLButtonElement = findNativeEl(fixture, 'submit');
+    const submitButton = getSubmitButton();
     expect(submitButton.disabled).toBe(false);
   });
 });

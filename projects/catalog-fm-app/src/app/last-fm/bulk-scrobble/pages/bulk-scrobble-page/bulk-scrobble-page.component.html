@@ -1,1 +1,13 @@
-<p>bulk-scrobble-page works!</p>
+<div>
+  <textarea
+    data-testid="scrobble-form"
+    [formControl]="scrobbleForm"
+    rows="20"
+    placeholder="Example:
+    Pink Floyd - Time - The Dark Side of the Moon
+    Radiohead - Paranoid Android - Ok Computer
+    Porcupine Tree - Trains"
+  ></textarea>
+
+  <button [disabled]="scrobbleForm.invalid" data-testid="submit">Scrobble</button>
+</div>

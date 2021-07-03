@@ -61,6 +61,18 @@ export function findEls<T>(fixture: ComponentFixture<T>, testId: string): DebugE
 }
 
 /**
+ * Finds a native element inside the Component by the given `data-testid` attribute.
+ * Throws an error if no element was found.
+ *
+ * @param fixture Component fixture
+ * @param testId Test id set by `data-testid`
+ *
+ */
+export function findNativeEl<T>(fixture: ComponentFixture<T>, testId: string): any {
+  return queryByCss<T>(fixture, testIdSelector(testId)).nativeElement;
+}
+
+/**
  * Gets the text content of an element with the given `data-testid` attribute.
  *
  * @param fixture Component fixture

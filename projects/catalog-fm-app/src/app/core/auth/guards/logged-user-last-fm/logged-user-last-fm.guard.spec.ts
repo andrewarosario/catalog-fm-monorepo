@@ -9,11 +9,9 @@ const makeRouterSpy = (): jasmine.SpyObj<Router> => {
 };
 
 const makeLoggedUserLastFmService = (): jasmine.SpyObj<LoggedUserLastFmService> => {
-  const spy = jasmine.createSpyObj<LoggedUserLastFmService>('LoggedUserLastFmService', [
-    'getLoggedUser',
-  ]);
-  spy.getLoggedUser.and.returnValue(Promise.resolve(mockAuthUser().lastFmSession));
-  return spy;
+  return jasmine.createSpyObj<LoggedUserLastFmService>('LoggedUserLastFmService', {
+    getLoggedUser: Promise.resolve(mockAuthUser().lastFmSession),
+  });
 };
 
 const makeSut = () => {

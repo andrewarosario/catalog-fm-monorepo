@@ -5,16 +5,12 @@ import { LastFmRequestSignature } from '@/api/services/last-fm-request-signature
 import { LastFmUrlBuilder } from './last-fm-url-builder.service';
 
 const makeLastFmRequestSignature = (): jasmine.SpyObj<LastFmRequestSignature> => {
-  const lastFmRequestSignatureSpy = jasmine.createSpyObj<LastFmRequestSignature>(
-    'LastFmRequestSignature',
-    ['makeSignature']
-  );
-  lastFmRequestSignatureSpy.makeSignature.and.returnValue({
-    ...MOCK_LAST_FM_SIGNATURE,
-    key: 'value with space',
+  return jasmine.createSpyObj<LastFmRequestSignature>('LastFmRequestSignature', {
+    makeSignature: {
+      ...MOCK_LAST_FM_SIGNATURE,
+      key: 'value with space',
+    },
   });
-
-  return lastFmRequestSignatureSpy;
 };
 
 const makeSut = () => {

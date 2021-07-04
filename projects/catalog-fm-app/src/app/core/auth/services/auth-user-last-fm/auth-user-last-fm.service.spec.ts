@@ -7,9 +7,9 @@ import { makeAuthUserStore } from '../../store/auth-user.store.mock';
 import { AuthUserLastFmService } from './auth-user-last-fm.service';
 
 const makeLastFmAuthService = (): jasmine.SpyObj<LastFmAuthService> => {
-  const spy = jasmine.createSpyObj<LastFmAuthService>('LastFmAuthService', ['authenticate']);
-  spy.authenticate.and.returnValue(of(MOCK_LAST_FM_AUTH_RESPONSE));
-  return spy;
+  return jasmine.createSpyObj<LastFmAuthService>('LastFmAuthService', {
+    authenticate: of(MOCK_LAST_FM_AUTH_RESPONSE),
+  });
 };
 
 const makeSut = () => {

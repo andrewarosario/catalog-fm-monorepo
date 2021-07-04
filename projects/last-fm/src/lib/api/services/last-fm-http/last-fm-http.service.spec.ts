@@ -13,8 +13,9 @@ describe('LastFmHttp', () => {
   const urlMock = 'any_url';
 
   function makeLastFmUrlBuilderSpy(): void {
-    lastFmUrlBuilderSpy = jasmine.createSpyObj<LastFmUrlBuilder>('LastFmUrlBuilder', ['buildUrl']);
-    lastFmUrlBuilderSpy.buildUrl.and.returnValue(urlMock);
+    lastFmUrlBuilderSpy = jasmine.createSpyObj<LastFmUrlBuilder>('LastFmUrlBuilder', {
+      buildUrl: urlMock,
+    });
   }
 
   beforeEach(() => {

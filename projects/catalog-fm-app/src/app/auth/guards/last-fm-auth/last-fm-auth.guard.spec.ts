@@ -10,11 +10,9 @@ const mockActivatedRouteWithToken = (): any => ({
 });
 
 const makeAuthUserLastFmService = (): jasmine.SpyObj<AuthUserLastFmService> => {
-  const spy = jasmine.createSpyObj<AuthUserLastFmService>('AuthUserLastFmService', [
-    'authenticate',
-  ]);
-  spy.authenticate.and.returnValue(of(mockAuthUser()));
-  return spy;
+  return jasmine.createSpyObj<AuthUserLastFmService>('AuthUserLastFmService', {
+    authenticate: of(mockAuthUser()),
+  });
 };
 
 const makeSut = () => {

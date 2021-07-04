@@ -9,5 +9,5 @@ export * from './lib/tokens/window/window.token';
 export * from './lib/tokens/is-offline/is-offline';
 export * from './lib/tokens/window/window.mock';
 export * from './lib/utils/can-activate-composite/can-activate-composite';
-export * from './lib/utils/unix-timestamp/unix-timestamp';
+export * from './lib/tokens/unix-timestamp/unix-timestamp.token';
 export * from './lib/catalog-fm-utils.module';

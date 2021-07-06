@@ -13,4 +13,8 @@ export class AuthUserStore {
     this.authUserSubject$.next({ lastFmSession });
     return this.authUser$;
   }
+
+  get authUser(): AuthUser {
+    return this.authUserSubject$.getValue();
+  }
 }

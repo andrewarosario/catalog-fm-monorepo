@@ -1,5 +1,5 @@
-import { MOCK_CORRECTED_OBJECT } from '@/shared/mocks/corrected-object.mock';
-import { LastFmScrobbleResponse } from '@/user/models/last-fm-scrobble-response';
+import { MOCK_CORRECTED_OBJECT } from '../../shared/mocks/corrected-object.mock';
+import { LastFmScrobbleResponse } from '../../user/models/last-fm-scrobble-response';
 
 export const MOCK_LAST_FM_SCROBBLE_RESPONSE: LastFmScrobbleResponse = {
   scrobbles: {

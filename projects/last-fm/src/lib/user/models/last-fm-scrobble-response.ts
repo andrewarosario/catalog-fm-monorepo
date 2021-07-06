@@ -1,4 +1,4 @@
-import { CorrectedObject } from '@/shared/models/corrected-object';
+import { CorrectedObject } from '../../shared/models/corrected-object';
 
 export interface LastFmScrobbleResponse {
   scrobbles: {

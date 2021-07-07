@@ -9,5 +9,7 @@
     Porcupine Tree - Trains"
   ></textarea>
 
-  <button [disabled]="scrobbleForm.invalid" data-testid="submit">Scrobble</button>
+  <button (click)="scrobble()" [disabled]="scrobbleForm.invalid" data-testid="submit">
+    Scrobble
+  </button>
 </div>

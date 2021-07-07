@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { BulkScrobbleService } from '../../services/bulk-scrobble/bulk-scrobble.service';
 
 @Component({
   selector: 'app-bulk-scrobble-page',
   templateUrl: './bulk-scrobble-page.component.html',
   styleUrls: ['./bulk-scrobble-page.component.less'],
 })
-export class BulkScrobblePageComponent implements OnInit {
+export class BulkScrobblePageComponent {
   scrobbleForm = new FormControl('', Validators.required);
 
-  constructor() {}
+  constructor(private bulkScrobbleService: BulkScrobbleService) {}
 
-  ngOnInit(): void {}
+  scrobble() {
+    this.bulkScrobbleService.scrobble(this.scrobbleForm.value);
+  }
 }

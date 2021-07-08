@@ -3,7 +3,9 @@ import { LAST_FM_KEY } from '@/api/tokens/last-fm-key.token';
 import { Inject, Injectable } from '@angular/core';
 import { WINDOW } from 'catalog-fm-utils';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class LastFmAuthRedirectService {
   constructor(
     @Inject(WINDOW) private window: Window,

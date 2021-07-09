@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'scrobble', pathMatch: 'full' },
+  { path: '', redirectTo: 'bulk' },
   {
-    path: 'scrobble',
-    loadChildren: () => import('./scrobble/scrobble.module').then((m) => m.ScrobbleModule),
+    path: 'bulk',
+    loadChildren: () =>
+      import('./bulk-scrobble/bulk-scrobble.module').then((m) => m.BulkScrobbleModule),
   },
 ];
 
@@ -13,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class LastFmRoutingModule {}
+export class ScrobbleRoutingModule {}

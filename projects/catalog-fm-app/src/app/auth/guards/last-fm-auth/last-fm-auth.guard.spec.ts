@@ -1,6 +1,6 @@
 import { mockAuthUser } from '@/core/auth/mocks/auth-user.mock';
 import { AuthUserLastFmService } from '@/core/auth/services/auth-user-last-fm/auth-user-last-fm.service';
-import { Router } from '@angular/router';
+import { makeRouterSpy } from 'projects/catalog-fm-app/src/test/mocks/router.mock';
 import { of } from 'rxjs';
 import { LastFmAuthGuard } from './last-fm-auth.guard';
 
@@ -9,10 +9,6 @@ const mockActivatedRouteWithToken = (): any => ({
     token: 'any_token',
   },
 });
-
-const makeRouterSpy = (): jasmine.SpyObj<Router> => {
-  return jasmine.createSpyObj<Router>('Router', ['navigateByUrl']);
-};
 
 const makeAuthUserLastFmService = (): jasmine.SpyObj<AuthUserLastFmService> => {
   return jasmine.createSpyObj<AuthUserLastFmService>('AuthUserLastFmService', {

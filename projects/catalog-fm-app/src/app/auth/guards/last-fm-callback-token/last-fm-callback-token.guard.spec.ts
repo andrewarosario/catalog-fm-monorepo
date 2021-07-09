@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { makeRouterSpy } from 'projects/catalog-fm-app/src/test/mocks/router.mock';
 import { LastFmCallbackTokenGuard } from './last-fm-callback-token.guard';
 
 const mockActivatedRouteWithToken = (): any => ({
@@ -10,10 +10,6 @@ const mockActivatedRouteWithToken = (): any => ({
 const mockActivatedRouteWithoutToken = (): any => ({
   queryParams: {},
 });
-
-const makeRouterSpy = (): jasmine.SpyObj<Router> => {
-  return jasmine.createSpyObj<Router>('Router', ['navigateByUrl']);
-};
 
 const makeSut = () => {
   const routerSpy = makeRouterSpy();

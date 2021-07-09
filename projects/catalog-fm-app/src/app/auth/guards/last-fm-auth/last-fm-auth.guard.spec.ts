@@ -1,5 +1,6 @@
 import { mockAuthUser } from '@/core/auth/mocks/auth-user.mock';
 import { AuthUserLastFmService } from '@/core/auth/services/auth-user-last-fm/auth-user-last-fm.service';
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { LastFmAuthGuard } from './last-fm-auth.guard';
 
@@ -9,6 +10,10 @@ const mockActivatedRouteWithToken = (): any => ({
   },
 });
 
+const makeRouterSpy = (): jasmine.SpyObj<Router> => {
+  return jasmine.createSpyObj<Router>('Router', ['navigateByUrl']);
+};
+
 const makeAuthUserLastFmService = (): jasmine.SpyObj<AuthUserLastFmService> => {
   return jasmine.createSpyObj<AuthUserLastFmService>('AuthUserLastFmService', {
     authenticate: of(mockAuthUser()),
@@ -17,8 +22,9 @@ const makeAuthUserLastFmService = (): jasmine.SpyObj<AuthUserLastFmService> => {
 
 const makeSut = () => {
   const authUserLastFmServiceSpy = makeAuthUserLastFmService();
-  const guard = new LastFmAuthGuard(authUserLastFmServiceSpy);
-  return { guard, authUserLastFmServiceSpy };
+  const routerSpy = makeRouterSpy();
+  const guard = new LastFmAuthGuard(authUserLastFmServiceSpy, routerSpy);
+  return { guard, authUserLastFmServiceSpy, routerSpy };
 };
 
 describe('LastFmAuthGuard', () => {
@@ -33,6 +39,21 @@ describe('LastFmAuthGuard', () => {
     expect(authUserLastFmServiceSpy.authenticate).toHaveBeenCalledWith(
       mockActivatedRouteWithToken().queryParams.token
     );
+  });
+
+  it('should navigate to /last-fm when authenticated', () => {
+    const { guard, routerSpy } = makeSut();
+    guard.canActivate(mockActivatedRouteWithToken()).subscribe(() => {
+      expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/last-fm');
+    });
+  });
+
+  it('should navigate to /auth when not authenticated', () => {
+    const { guard, routerSpy, authUserLastFmServiceSpy } = makeSut();
+    authUserLastFmServiceSpy.authenticate.and.returnValue(of(null));
+    guard.canActivate(mockActivatedRouteWithToken()).subscribe(() => {
+      expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/auth');
+    });
   });
 
   it('should return true when authenticate returns auth user', () => {

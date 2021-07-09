@@ -11,29 +11,33 @@ const bulkScrobbleServiceSpy = jasmine.createSpyObj<BulkScrobbleService>('BulkSc
 });
 
 const getSubmitButton = () => screen.getByTestId('submit') as HTMLButtonElement;
+const getScrobbleInput = () => screen.getByTestId('scrobble-input') as HTMLTextAreaElement;
+
+const setup = async () => {
+  await render(BulkScrobblePageComponent, {
+    imports: [ReactiveFormsModule],
+    componentProviders: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],
+  });
+};
 
 describe('BulkScrobblePageComponent', () => {
-  beforeEach(async () => {
-    await render(BulkScrobblePageComponent, {
-      imports: [ReactiveFormsModule],
-      componentProviders: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],
-    });
-  });
-
-  it('submit button should be disabled on init', () => {
+  it('form should be valid only when typing some text', async () => {
+    await setup();
     expect(getSubmitButton().disabled).toBe(true);
-  });
 
-  it('should enable button only when typing some text', () => {
-    userEvent.type(screen.getByTestId('scrobble-form'), 'value');
+    userEvent.type(getScrobbleInput(), 'value');
     expect(getSubmitButton().disabled).toBe(false);
 
-    userEvent.clear(screen.getByTestId('scrobble-form'));
+    userEvent.clear(getScrobbleInput());
     expect(getSubmitButton().disabled).toBe(true);
+
+    fireEvent.click(getSubmitButton());
+    expect(bulkScrobbleServiceSpy.scrobble).not.toHaveBeenCalled();
   });
 
   it('should scrobble tracks', async () => {
-    userEvent.type(screen.getByTestId('scrobble-form'), 'value');
+    await setup();
+    userEvent.type(getScrobbleInput(), 'value');
     fireEvent.click(getSubmitButton());
     expect(bulkScrobbleServiceSpy.scrobble).toHaveBeenCalledWith('value');
   });

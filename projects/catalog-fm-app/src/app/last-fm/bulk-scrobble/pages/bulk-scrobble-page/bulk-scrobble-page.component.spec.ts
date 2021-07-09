@@ -32,7 +32,6 @@ describe('BulkScrobblePageComponent', () => {
     expect(getSubmitButton().disabled).toBe(true);
 
     fireEvent.click(getSubmitButton());
-    expect(bulkScrobbleServiceSpy.scrobble).not.toHaveBeenCalled();
   });
 
   it('should scrobble tracks', async () => {

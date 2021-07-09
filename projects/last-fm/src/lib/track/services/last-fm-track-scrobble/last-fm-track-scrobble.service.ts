@@ -6,8 +6,12 @@ import {
   LastFmTrackScrobbleParams,
 } from '@/track/interfaces/last-fm-track-scrobble';
 import { LastFmScrobbleResponse } from '@/user/models/last-fm-scrobble-response';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class LastFmTrackScrobbleService implements LastFmTrackScrobble {
   constructor(private lastFmHttp: LastFmHttp) {}
 

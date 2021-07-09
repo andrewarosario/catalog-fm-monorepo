@@ -1,4 +1,4 @@
-import { ScrobbleService } from '@/core/last-fm/services/scrobble/scrobble.service';
+import { ScrobbleService } from '@/last-fm/services/scrobble/scrobble.service';
 import { MOCK_LAST_FM_SCROBBLE_RESPONSE } from 'last-fm';
 import { of } from 'rxjs';
 import { mockLastFmSimpleTrackScrobble } from '../../mocks/last-fm-simple-track-scrobble.mock';

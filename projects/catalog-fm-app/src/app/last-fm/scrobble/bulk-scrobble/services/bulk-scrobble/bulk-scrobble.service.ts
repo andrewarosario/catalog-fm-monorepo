@@ -1,4 +1,4 @@
-import { ScrobbleService } from '@/core/last-fm/services/scrobble/scrobble.service';
+import { ScrobbleService } from '@/last-fm/services/scrobble/scrobble.service';
 import { Injectable } from '@angular/core';
 import { LastFmScrobbleResponse, LastFmSimpleTrack } from 'last-fm';
 import { forkJoin, Observable } from 'rxjs';

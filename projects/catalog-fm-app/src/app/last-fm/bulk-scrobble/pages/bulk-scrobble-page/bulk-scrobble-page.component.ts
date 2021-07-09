@@ -13,6 +13,6 @@ export class BulkScrobblePageComponent {
   constructor(private bulkScrobbleService: BulkScrobbleService) {}
 
   scrobble() {
-    this.bulkScrobbleService.scrobble(this.scrobbleForm.value);
+    this.bulkScrobbleService.scrobble(this.scrobbleForm.value).subscribe();
   }
 }

@@ -1,66 +1,48 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import {
-  click,
-  findNativeEl,
-  setFieldValue,
-} from 'projects/catalog-fm-app/src/test/helpers/element.spec-helpers';
-import { BulkScrobbleService } from '../../services/bulk-scrobble/bulk-scrobble.service';
-
+import { render, screen, fireEvent } from '@testing-library/angular';
+import userEvent from '@testing-library/user-event';
 import { BulkScrobblePageComponent } from './bulk-scrobble-page.component';
+import { BulkScrobbleService } from '../../services/bulk-scrobble/bulk-scrobble.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { of } from 'rxjs';
+import { MOCK_LAST_FM_SCROBBLE_RESPONSE } from 'last-fm';
+
+const bulkScrobbleServiceSpy = jasmine.createSpyObj<BulkScrobbleService>('BulkScrobbleService', {
+  scrobble: of(MOCK_LAST_FM_SCROBBLE_RESPONSE),
+});
 
 describe('BulkScrobblePageComponent', () => {
-  let component: BulkScrobblePageComponent;
-  let fixture: ComponentFixture<BulkScrobblePageComponent>;
-
-  const bulkScrobbleServiceSpy = jasmine.createSpyObj<BulkScrobbleService>('BulkScrobbleService', [
-    'scrobble',
-  ]);
-  const getSubmitButton = (): HTMLButtonElement => findNativeEl(fixture, 'submit');
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  it('submit button should be disabled on init', async () => {
+    await render(BulkScrobblePageComponent, {
       imports: [ReactiveFormsModule],
-      declarations: [BulkScrobblePageComponent],
-      providers: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],
-    }).compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(BulkScrobblePageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('submit button should be disabled on init', () => {
-    const submitButton = getSubmitButton();
+      componentProviders: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],
+    });
+    const submitButton = screen.getByTestId('submit') as HTMLButtonElement;
     expect(submitButton.disabled).toBe(true);
   });
 
-  it('should enable button when typing some text', () => {
-    setFieldValue(fixture, 'scrobble-form', 'value');
-    fixture.detectChanges();
-    const submitButton = getSubmitButton();
+  it('should enable button only when typing some text', async () => {
+    await render(BulkScrobblePageComponent, {
+      imports: [ReactiveFormsModule],
+      componentProviders: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],
+    });
+
+    userEvent.type(screen.getByTestId('scrobble-form'), 'value');
+    const submitButton = screen.getByTestId('submit') as HTMLButtonElement;
     expect(submitButton.disabled).toBe(false);
-  });
 
-  it('should disable button when typing blank text', () => {
-    setFieldValue(fixture, 'scrobble-form', 'value');
-    fixture.detectChanges();
-    setFieldValue(fixture, 'scrobble-form', '');
-    fixture.detectChanges();
-    const submitButton = getSubmitButton();
+    userEvent.clear(screen.getByTestId('scrobble-form'));
     expect(submitButton.disabled).toBe(true);
   });
 
-  it('should scrobble tracks', () => {
-    setFieldValue(fixture, 'scrobble-form', 'value');
-    fixture.detectChanges();
-    click(fixture, 'submit');
+  it('should scrobble tracks', async () => {
+    await render(BulkScrobblePageComponent, {
+      imports: [ReactiveFormsModule],
+      componentProviders: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],
+    });
+    userEvent.type(screen.getByTestId('scrobble-form'), 'value');
+    const submitButton = screen.getByTestId('submit') as HTMLButtonElement;
+    fireEvent.click(submitButton);
+
     expect(bulkScrobbleServiceSpy.scrobble).toHaveBeenCalledWith('value');
   });
 });

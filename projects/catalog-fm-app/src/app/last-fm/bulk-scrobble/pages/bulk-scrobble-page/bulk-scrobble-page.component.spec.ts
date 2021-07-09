@@ -11,21 +11,19 @@ const bulkScrobbleServiceSpy = jasmine.createSpyObj<BulkScrobbleService>('BulkSc
 });
 
 describe('BulkScrobblePageComponent', () => {
-  it('submit button should be disabled on init', async () => {
+  beforeEach(async () => {
     await render(BulkScrobblePageComponent, {
       imports: [ReactiveFormsModule],
       componentProviders: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],
     });
+  });
+
+  it('submit button should be disabled on init', () => {
     const submitButton = screen.getByTestId('submit') as HTMLButtonElement;
     expect(submitButton.disabled).toBe(true);
   });
 
-  it('should enable button only when typing some text', async () => {
-    await render(BulkScrobblePageComponent, {
-      imports: [ReactiveFormsModule],
-      componentProviders: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],
-    });
-
+  it('should enable button only when typing some text', () => {
     userEvent.type(screen.getByTestId('scrobble-form'), 'value');
     const submitButton = screen.getByTestId('submit') as HTMLButtonElement;
     expect(submitButton.disabled).toBe(false);
@@ -35,10 +33,6 @@ describe('BulkScrobblePageComponent', () => {
   });
 
   it('should scrobble tracks', async () => {
-    await render(BulkScrobblePageComponent, {
-      imports: [ReactiveFormsModule],
-      componentProviders: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],
-    });
     userEvent.type(screen.getByTestId('scrobble-form'), 'value');
     const submitButton = screen.getByTestId('submit') as HTMLButtonElement;
     fireEvent.click(submitButton);

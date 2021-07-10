@@ -6,23 +6,24 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { MOCK_LAST_FM_SCROBBLE_RESPONSE } from 'last-fm';
 
-const bulkScrobbleServiceSpy = jasmine.createSpyObj<BulkScrobbleService>('BulkScrobbleService', {
-  scrobble: of(MOCK_LAST_FM_SCROBBLE_RESPONSE),
-});
-
 const getSubmitButton = () => screen.getByTestId('submit') as HTMLButtonElement;
 const getScrobbleInput = () => screen.getByTestId('scrobble-input') as HTMLTextAreaElement;
 
 const setup = async () => {
+  const bulkScrobbleServiceSpy = jasmine.createSpyObj<BulkScrobbleService>('BulkScrobbleService', {
+    scrobble: of(MOCK_LAST_FM_SCROBBLE_RESPONSE),
+  });
   await render(BulkScrobblePageComponent, {
     imports: [ReactiveFormsModule],
     providers: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],
   });
+
+  return { bulkScrobbleServiceSpy };
 };
 
 describe('BulkScrobblePageComponent', () => {
   it('form should be valid only when typing some text', async () => {
-    await setup();
+    const { bulkScrobbleServiceSpy } = await setup();
     expect(getSubmitButton().disabled).toBe(true);
 
     userEvent.type(getScrobbleInput(), 'value');
@@ -36,7 +37,7 @@ describe('BulkScrobblePageComponent', () => {
   });
 
   it('should scrobble tracks', async () => {
-    await setup();
+    const { bulkScrobbleServiceSpy } = await setup();
     userEvent.type(getScrobbleInput(), 'value');
     userEvent.click(getSubmitButton());
     expect(bulkScrobbleServiceSpy.scrobble).toHaveBeenCalledWith('value');

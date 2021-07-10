@@ -13,7 +13,11 @@ export class ManualScrobblePageComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private scrobbleService: ScrobbleService) {}
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
+    this.form = this.createForm();
+  }
+
+  private createForm(): FormGroup {
+    return this.formBuilder.group({
       artist: ['', Validators.required],
       track: ['', Validators.required],
       album: [''],

@@ -9,10 +9,14 @@ import { MOCK_LAST_FM_SCROBBLE_RESPONSE } from 'last-fm';
 const getSubmitButton = () => screen.getByTestId('submit') as HTMLButtonElement;
 const getScrobbleInput = () => screen.getByTestId('scrobble-input') as HTMLTextAreaElement;
 
-const setup = async () => {
-  const bulkScrobbleServiceSpy = jasmine.createSpyObj<BulkScrobbleService>('BulkScrobbleService', {
+const makeBulkScrobbleService = () => {
+  return jasmine.createSpyObj<BulkScrobbleService>('BulkScrobbleService', {
     scrobble: of(MOCK_LAST_FM_SCROBBLE_RESPONSE),
   });
+};
+
+const setup = async () => {
+  const bulkScrobbleServiceSpy = makeBulkScrobbleService();
   await render(BulkScrobblePageComponent, {
     imports: [ReactiveFormsModule],
     providers: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],

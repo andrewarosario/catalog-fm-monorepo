@@ -4,6 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'bulk' },
   {
+    path: 'manual',
+    loadChildren: () =>
+      import('./manual-scrobble/manual-scrobble.module').then((m) => m.ManualScrobbleModule),
+  },
+  {
     path: 'bulk',
     loadChildren: () =>
       import('./bulk-scrobble/bulk-scrobble.module').then((m) => m.BulkScrobbleModule),

@@ -1,3 +1,4 @@
+import { ScrobbleService } from '@/last-fm/services/scrobble/scrobble.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ManualScrobblePageComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private scrobbleService: ScrobbleService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({

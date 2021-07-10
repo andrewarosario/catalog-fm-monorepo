@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/angular';
+import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { BulkScrobblePageComponent } from './bulk-scrobble-page.component';
 import { BulkScrobbleService } from '../../services/bulk-scrobble/bulk-scrobble.service';
@@ -16,7 +16,7 @@ const getScrobbleInput = () => screen.getByTestId('scrobble-input') as HTMLTextA
 const setup = async () => {
   await render(BulkScrobblePageComponent, {
     imports: [ReactiveFormsModule],
-    componentProviders: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],
+    providers: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],
   });
 };
 
@@ -31,13 +31,14 @@ describe('BulkScrobblePageComponent', () => {
     userEvent.clear(getScrobbleInput());
     expect(getSubmitButton().disabled).toBe(true);
 
-    fireEvent.click(getSubmitButton());
+    userEvent.click(getSubmitButton());
+    expect(bulkScrobbleServiceSpy.scrobble).not.toHaveBeenCalled();
   });
 
   it('should scrobble tracks', async () => {
     await setup();
     userEvent.type(getScrobbleInput(), 'value');
-    fireEvent.click(getSubmitButton());
+    userEvent.click(getSubmitButton());
     expect(bulkScrobbleServiceSpy.scrobble).toHaveBeenCalledWith('value');
   });
 });

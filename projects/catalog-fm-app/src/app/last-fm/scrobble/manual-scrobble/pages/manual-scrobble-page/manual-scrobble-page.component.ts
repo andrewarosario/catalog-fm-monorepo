@@ -17,7 +17,7 @@ export class ManualScrobblePageComponent implements OnInit {
   }
 
   scrobble(): void {
-    this.scrobbleService.scrobble(this.form.value);
+    this.scrobbleService.scrobble(this.form.value).subscribe();
   }
 
   private createForm(): FormGroup {

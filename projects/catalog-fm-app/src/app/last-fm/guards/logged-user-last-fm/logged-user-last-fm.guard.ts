@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
-import { LoggedUserLastFmService } from '../../services/logged-user-last-fm/logged-user-last-fm.service';
+import { LoggedUserLastFmService } from '../../../core/auth/services/logged-user-last-fm/logged-user-last-fm.service';
 
 @Injectable({
   providedIn: 'root',

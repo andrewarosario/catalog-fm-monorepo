@@ -1,6 +1,5 @@
-import { ScrobbleService } from '@/last-fm/services/scrobble/scrobble.service';
+import { makeScrobbleService } from '@/last-fm/services/scrobble/scrobble.service.mock';
 import { MOCK_LAST_FM_SCROBBLE_RESPONSE } from 'last-fm';
-import { of } from 'rxjs';
 import { mockLastFmSimpleTrackScrobble } from '../../mocks/last-fm-simple-track-scrobble.mock';
 import { mockLastFmTextScrobble } from '../../mocks/last-fm-text-scrobble.mock';
 import { BulkScrobbleConverter } from '../bulk-scrobble-converter/bulk-scrobble-converter.service';
@@ -10,12 +9,6 @@ import { BulkScrobbleService } from './bulk-scrobble.service';
 const makeBulkScrobbleConverter = (): jasmine.SpyObj<BulkScrobbleConverter> => {
   return jasmine.createSpyObj<BulkScrobbleConverter>('BulkScrobbleConverter', {
     convert: mockLastFmSimpleTrackScrobble(),
-  });
-};
-
-const makeScrobbleService = (): jasmine.SpyObj<ScrobbleService> => {
-  return jasmine.createSpyObj<ScrobbleService>('ScrobbleService', {
-    scrobble: of(MOCK_LAST_FM_SCROBBLE_RESPONSE),
   });
 };
 

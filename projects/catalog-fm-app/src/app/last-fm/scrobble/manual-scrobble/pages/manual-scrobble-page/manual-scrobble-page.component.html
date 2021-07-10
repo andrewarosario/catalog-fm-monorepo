@@ -8,7 +8,7 @@
   <label>Album</label>
   <input data-testid="album" formControlName="album" />
 
-  <button [disabled]="form.invalid" data-testid="submit">
+  <button (click)="scrobble()" [disabled]="form.invalid" data-testid="submit">
     Scrobble
   </button>
 </form>

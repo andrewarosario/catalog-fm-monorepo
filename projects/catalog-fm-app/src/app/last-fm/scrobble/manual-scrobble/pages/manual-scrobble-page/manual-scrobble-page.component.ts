@@ -16,6 +16,10 @@ export class ManualScrobblePageComponent implements OnInit {
     this.form = this.createForm();
   }
 
+  scrobble(): void {
+    this.scrobbleService.scrobble(this.form.value);
+  }
+
   private createForm(): FormGroup {
     return this.formBuilder.group({
       artist: ['', Validators.required],

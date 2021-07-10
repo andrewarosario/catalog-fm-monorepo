@@ -1,1 +1,14 @@
-<p>manual-scrobble-page works!</p>
+<form [formGroup]="form">
+  <label>Artist</label>
+  <input data-testid="artist" formControlName="artist" />
+
+  <label>Track</label>
+  <input data-testid="track" formControlName="track" />
+
+  <label>Album</label>
+  <input data-testid="album" formControlName="album" />
+
+  <button [disabled]="form.invalid" data-testid="submit">
+    Scrobble
+  </button>
+</form>

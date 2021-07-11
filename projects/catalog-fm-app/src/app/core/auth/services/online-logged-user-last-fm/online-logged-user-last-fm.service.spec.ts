@@ -11,6 +11,15 @@ const makeSut = () => {
   return { service, authUserStoreSpy, isOfflineMock };
 };
 
+const expectServiceAssert = (service: OnlineLoggedUserLastFmService, assert: boolean): void => {
+  service
+    .isOnlineAndLogged()
+    .pipe(take(1))
+    .subscribe((isOnlineAndLogged) => {
+      expect(isOnlineAndLogged).toBe(assert);
+    });
+};
+
 describe('OnlineLoggedUserLastFmService', () => {
   it('should be created', () => {
     const { service } = makeSut();
@@ -21,44 +30,23 @@ describe('OnlineLoggedUserLastFmService', () => {
     const { service, authUserStoreSpy, isOfflineMock } = makeSut();
     isOfflineMock.next(true);
     spyPropertyGetter(authUserStoreSpy, 'authUser$').and.returnValue(of(null));
-    service
-      .isOnlineAndLogged()
-      .pipe(take(1))
-      .subscribe((isOnlineAndLogged) => {
-        expect(isOnlineAndLogged).toBe(false);
-      });
+    expectServiceAssert(service, false);
   });
 
   it('should return false when not logged and online', () => {
     const { service, authUserStoreSpy } = makeSut();
     spyPropertyGetter(authUserStoreSpy, 'authUser$').and.returnValue(of(null));
-    service
-      .isOnlineAndLogged()
-      .pipe(take(1))
-      .subscribe((isOnlineAndLogged) => {
-        expect(isOnlineAndLogged).toBe(false);
-      });
+    expectServiceAssert(service, false);
   });
 
   it('should return false when logged and offline', () => {
     const { service, isOfflineMock } = makeSut();
     isOfflineMock.next(true);
-
-    service
-      .isOnlineAndLogged()
-      .pipe(take(1))
-      .subscribe((isOnlineAndLogged) => {
-        expect(isOnlineAndLogged).toBe(false);
-      });
+    expectServiceAssert(service, false);
   });
 
   it('should return true when logged and online', () => {
     const { service } = makeSut();
-    service
-      .isOnlineAndLogged()
-      .pipe(take(1))
-      .subscribe((isOnlineAndLogged) => {
-        expect(isOnlineAndLogged).toBe(true);
-      });
+    expectServiceAssert(service, true);
   });
 });

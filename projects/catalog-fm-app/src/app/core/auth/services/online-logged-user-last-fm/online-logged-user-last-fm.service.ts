@@ -15,7 +15,7 @@ export class OnlineLoggedUserLastFmService {
 
   isOnlineAndLogged(): Observable<boolean> {
     return combineLatest([this.store.authUser$, this.isOffline$]).pipe(
-      map(([user, isOffline]) => user.lastFmSession && !isOffline)
+      map(([user, isOffline]) => Boolean(user?.lastFmSession && !isOffline))
     );
   }
 }

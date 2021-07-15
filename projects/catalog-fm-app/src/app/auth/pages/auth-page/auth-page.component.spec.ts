@@ -1,3 +1,5 @@
+import { render, screen } from '@testing-library/angular';
+import userEvent from '@testing-library/user-event';
 import { LastFmAuthRedirectService } from 'last-fm';
 
 import { AuthPageComponent } from './auth-page.component';
@@ -9,21 +11,19 @@ const makeLastFmAuthRedirectService = (): jasmine.SpyObj<LastFmAuthRedirectServi
   return serviceSpy;
 };
 
-const makeSut = () => {
+const setup = async () => {
   const lastFmAuthRedirectServiceSpy = makeLastFmAuthRedirectService();
-  const component = new AuthPageComponent(lastFmAuthRedirectServiceSpy);
-  return { component, lastFmAuthRedirectServiceSpy };
+  await render(AuthPageComponent, {
+    providers: [{ provide: LastFmAuthRedirectService, useValue: lastFmAuthRedirectServiceSpy }],
+  });
+
+  return { lastFmAuthRedirectServiceSpy };
 };
 
 describe('AuthPageComponent', () => {
-  it('should create', () => {
-    const { component } = makeSut();
-    expect(component).toBeTruthy();
-  });
-
-  it('should call LastFmAuthRedirectService.redirect with correct values when call lastFmRedirect', () => {
-    const { component, lastFmAuthRedirectServiceSpy } = makeSut();
-    component.lastFmRedirect();
+  it('should call LastFmAuthRedirectService.redirect with correct values when clicking the redirect button', async () => {
+    const { lastFmAuthRedirectServiceSpy } = await setup();
+    userEvent.click(screen.getByTestId('redirect'));
     expect(lastFmAuthRedirectServiceSpy.redirect).toHaveBeenCalledOnceWith('auth/callback');
   });
 });

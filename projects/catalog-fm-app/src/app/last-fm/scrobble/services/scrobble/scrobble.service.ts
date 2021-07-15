@@ -5,11 +5,12 @@ import { Observable } from 'rxjs';
 import { DateHelper } from 'catalog-fm-utils';
 import { mapTo } from 'rxjs/operators';
 import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
+import { Scrobble } from '../../interfaces/scrobble';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ScrobbleService {
+export class ScrobbleService implements Scrobble {
   constructor(
     private authUserStore: AuthUserStore,
     private lastFmTrackScrobbleService: LastFmTrackScrobbleService,

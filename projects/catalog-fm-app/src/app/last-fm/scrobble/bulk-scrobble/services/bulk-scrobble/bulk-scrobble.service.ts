@@ -1,7 +1,8 @@
 import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
+import { ScrobbleStrategyService } from '@/last-fm/scrobble/services/scrobble-strategy/scrobble-strategy.service';
 import { ScrobbleService } from '@/last-fm/scrobble/services/scrobble/scrobble.service';
 import { Injectable } from '@angular/core';
-import { LastFmScrobbleResponse, LastFmSimpleTrack } from 'last-fm';
+import { LastFmSimpleTrack } from 'last-fm';
 import { forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BulkScrobbleConverter } from '../bulk-scrobble-converter/bulk-scrobble-converter.service';
@@ -12,7 +13,7 @@ import { BulkScrobbleConverter } from '../bulk-scrobble-converter/bulk-scrobble-
 export class BulkScrobbleService {
   constructor(
     private bulkScrobbleConverter: BulkScrobbleConverter,
-    private scrobbleService: ScrobbleService
+    private scrobbleService: ScrobbleStrategyService
   ) {}
 
   public scrobble(text: string): Observable<ScrobbleResponseType> {

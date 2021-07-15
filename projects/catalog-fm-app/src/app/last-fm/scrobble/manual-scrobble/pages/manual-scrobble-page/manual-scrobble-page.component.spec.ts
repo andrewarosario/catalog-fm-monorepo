@@ -1,3 +1,4 @@
+import { ScrobbleStrategyService } from '@/last-fm/scrobble/services/scrobble-strategy/scrobble-strategy.service';
 import { ScrobbleService } from '@/last-fm/scrobble/services/scrobble/scrobble.service';
 import { makeScrobbleService } from '@/last-fm/scrobble/services/scrobble/scrobble.service.mock';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -11,7 +12,7 @@ const setup = async () => {
   const scrobbleServiceSpy = makeScrobbleService();
   await render(ManualScrobblePageComponent, {
     imports: [ReactiveFormsModule],
-    providers: [{ provide: ScrobbleService, useValue: scrobbleServiceSpy }],
+    providers: [{ provide: ScrobbleStrategyService, useValue: scrobbleServiceSpy }],
   });
   return { scrobbleServiceSpy };
 };

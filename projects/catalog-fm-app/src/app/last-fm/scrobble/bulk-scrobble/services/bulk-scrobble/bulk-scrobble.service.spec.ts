@@ -1,6 +1,7 @@
 import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
+import { ScrobbleStrategyService } from '@/last-fm/scrobble/services/scrobble-strategy/scrobble-strategy.service';
 import { makeScrobbleService } from '@/last-fm/scrobble/services/scrobble/scrobble.service.mock';
-import { MOCK_LAST_FM_SCROBBLE_RESPONSE } from 'last-fm';
+import { TestBed } from '@angular/core/testing';
 import { mockLastFmSimpleTrackScrobble } from '../../mocks/last-fm-simple-track-scrobble.mock';
 import { mockLastFmTextScrobble } from '../../mocks/last-fm-text-scrobble.mock';
 import { BulkScrobbleConverter } from '../bulk-scrobble-converter/bulk-scrobble-converter.service';
@@ -16,7 +17,13 @@ const makeBulkScrobbleConverter = (): jasmine.SpyObj<BulkScrobbleConverter> => {
 const makeSut = () => {
   const bulkScrobbleConverterSpy = makeBulkScrobbleConverter();
   const scrobbleServiceSpy = makeScrobbleService();
-  const service = new BulkScrobbleService(bulkScrobbleConverterSpy, scrobbleServiceSpy);
+  TestBed.configureTestingModule({
+    providers: [
+      { provide: ScrobbleStrategyService, useValue: scrobbleServiceSpy },
+      { provide: BulkScrobbleConverter, useValue: bulkScrobbleConverterSpy },
+    ],
+  });
+  const service = TestBed.inject(BulkScrobbleService);
   return { service, bulkScrobbleConverterSpy, scrobbleServiceSpy };
 };
 

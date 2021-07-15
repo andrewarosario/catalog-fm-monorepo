@@ -1,4 +1,4 @@
-import { ScrobbleService } from '@/last-fm/services/scrobble/scrobble.service';
+import { ScrobbleService } from '@/last-fm/scrobble/services/scrobble/scrobble.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 

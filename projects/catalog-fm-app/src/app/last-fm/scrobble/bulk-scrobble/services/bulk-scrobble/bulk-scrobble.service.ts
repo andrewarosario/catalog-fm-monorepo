@@ -1,5 +1,5 @@
 import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
-import { ScrobbleService } from '@/last-fm/services/scrobble/scrobble.service';
+import { ScrobbleService } from '@/last-fm/scrobble/services/scrobble/scrobble.service';
 import { Injectable } from '@angular/core';
 import { LastFmScrobbleResponse, LastFmSimpleTrack } from 'last-fm';
 import { forkJoin, Observable } from 'rxjs';

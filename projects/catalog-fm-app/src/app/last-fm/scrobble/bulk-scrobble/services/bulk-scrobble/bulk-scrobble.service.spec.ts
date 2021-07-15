@@ -1,5 +1,5 @@
 import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
-import { makeScrobbleService } from '@/last-fm/services/scrobble/scrobble.service.mock';
+import { makeScrobbleService } from '@/last-fm/scrobble/services/scrobble/scrobble.service.mock';
 import { MOCK_LAST_FM_SCROBBLE_RESPONSE } from 'last-fm';
 import { mockLastFmSimpleTrackScrobble } from '../../mocks/last-fm-simple-track-scrobble.mock';
 import { mockLastFmTextScrobble } from '../../mocks/last-fm-text-scrobble.mock';

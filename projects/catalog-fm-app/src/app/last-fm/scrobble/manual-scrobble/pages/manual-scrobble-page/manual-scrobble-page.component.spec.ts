@@ -1,5 +1,5 @@
-import { ScrobbleService } from '@/last-fm/services/scrobble/scrobble.service';
-import { makeScrobbleService } from '@/last-fm/services/scrobble/scrobble.service.mock';
+import { ScrobbleService } from '@/last-fm/scrobble/services/scrobble/scrobble.service';
+import { makeScrobbleService } from '@/last-fm/scrobble/services/scrobble/scrobble.service.mock';
 import { ReactiveFormsModule } from '@angular/forms';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';

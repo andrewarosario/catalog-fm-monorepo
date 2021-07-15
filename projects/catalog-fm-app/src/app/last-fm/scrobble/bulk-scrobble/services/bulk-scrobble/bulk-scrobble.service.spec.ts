@@ -43,7 +43,7 @@ describe('BulkScrobbleService', () => {
   it('should return scrobble type response', () => {
     const { service } = makeSut();
     service.scrobble(mockLastFmTextScrobble()).subscribe((response) => {
-      expect(response).toEqual(ScrobbleResponseType.Success);
+      expect(response).toBe(ScrobbleResponseType.Success);
     });
   });
 });

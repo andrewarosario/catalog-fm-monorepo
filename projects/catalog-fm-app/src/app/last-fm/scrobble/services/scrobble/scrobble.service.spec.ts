@@ -67,7 +67,7 @@ describe('ScrobbleService', () => {
   it('should return the correct response type from scrobble', () => {
     const { service } = makeSut();
     service.scrobble(MOCK_LAST_FM_SIMPLE_TRACK).subscribe((response) => {
-      expect(response).toEqual(ScrobbleResponseType.Success);
+      expect(response).toBe(ScrobbleResponseType.Success);
     });
   });
 });

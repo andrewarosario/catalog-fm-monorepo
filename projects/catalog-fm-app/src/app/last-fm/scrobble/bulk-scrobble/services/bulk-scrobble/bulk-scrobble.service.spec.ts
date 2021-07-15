@@ -1,3 +1,4 @@
+import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
 import { makeScrobbleService } from '@/last-fm/services/scrobble/scrobble.service.mock';
 import { MOCK_LAST_FM_SCROBBLE_RESPONSE } from 'last-fm';
 import { mockLastFmSimpleTrackScrobble } from '../../mocks/last-fm-simple-track-scrobble.mock';
@@ -39,10 +40,10 @@ describe('BulkScrobbleService', () => {
     }
   });
 
-  it('should return scrobble response', () => {
+  it('should return scrobble type response', () => {
     const { service } = makeSut();
     service.scrobble(mockLastFmTextScrobble()).subscribe((response) => {
-      expect(response).toEqual(MOCK_LAST_FM_SCROBBLE_RESPONSE);
+      expect(response).toEqual(ScrobbleResponseType.Success);
     });
   });
 });

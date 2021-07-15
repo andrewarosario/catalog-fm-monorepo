@@ -3,6 +3,8 @@ import { LastFmTrackScrobbleService, LastFmSimpleTrack, LastFmScrobbleResponse }
 import { AuthUserStore } from '@/core/auth/store/auth-user.store';
 import { Observable } from 'rxjs';
 import { DateHelper } from 'catalog-fm-utils';
+import { mapTo } from 'rxjs/operators';
+import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
 
 @Injectable({
   providedIn: 'root',
@@ -17,11 +19,13 @@ export class ScrobbleService {
   scrobble(
     track: LastFmSimpleTrack,
     timestamp: number = this.dateHelper.unixTimestamp
-  ): Observable<LastFmScrobbleResponse> {
-    return this.lastFmTrackScrobbleService.scrobble({
-      ...track,
-      timestamp: String(timestamp),
-      sk: this.authUserStore.authUser.lastFmSession.key,
-    });
+  ): Observable<ScrobbleResponseType> {
+    return this.lastFmTrackScrobbleService
+      .scrobble({
+        ...track,
+        timestamp: String(timestamp),
+        sk: this.authUserStore.authUser.lastFmSession.key,
+      })
+      .pipe(mapTo(ScrobbleResponseType.Success));
   }
 }

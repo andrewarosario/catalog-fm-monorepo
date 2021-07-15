@@ -4,14 +4,14 @@ import { BulkScrobblePageComponent } from './bulk-scrobble-page.component';
 import { BulkScrobbleService } from '../../services/bulk-scrobble/bulk-scrobble.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
-import { MOCK_LAST_FM_SCROBBLE_RESPONSE } from 'last-fm';
+import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
 
 const getSubmitButton = () => screen.getByTestId('submit') as HTMLButtonElement;
 const getScrobbleInput = () => screen.getByTestId('scrobble-input') as HTMLTextAreaElement;
 
 const makeBulkScrobbleService = () => {
   return jasmine.createSpyObj<BulkScrobbleService>('BulkScrobbleService', {
-    scrobble: of(MOCK_LAST_FM_SCROBBLE_RESPONSE),
+    scrobble: of(ScrobbleResponseType.Success),
   });
 };
 

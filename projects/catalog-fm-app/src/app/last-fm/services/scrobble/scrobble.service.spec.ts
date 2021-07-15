@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { ScrobbleService } from './scrobble.service';
 import { DateHelper } from 'catalog-fm-utils';
 import { mockAuthUser } from '@/core/auth/mocks/auth-user.mock';
+import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
 
 const makeLastFmTrackScrobbleService = (): jasmine.SpyObj<LastFmTrackScrobbleService> => {
   return jasmine.createSpyObj<LastFmTrackScrobbleService>('LastFmTrackScrobbleService', {
@@ -63,10 +64,10 @@ describe('ScrobbleService', () => {
     });
   });
 
-  it('should return the correct response from scrobble', () => {
+  it('should return the correct response type from scrobble', () => {
     const { service } = makeSut();
     service.scrobble(MOCK_LAST_FM_SIMPLE_TRACK).subscribe((response) => {
-      expect(response).toEqual(MOCK_LAST_FM_SCROBBLE_RESPONSE);
+      expect(response).toEqual(ScrobbleResponseType.Success);
     });
   });
 });

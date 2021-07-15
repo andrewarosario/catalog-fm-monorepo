@@ -1,3 +1,4 @@
+import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
 import { ScrobbleService } from '@/last-fm/services/scrobble/scrobble.service';
 import { Injectable } from '@angular/core';
 import { LastFmScrobbleResponse, LastFmSimpleTrack } from 'last-fm';
@@ -14,12 +15,12 @@ export class BulkScrobbleService {
     private scrobbleService: ScrobbleService
   ) {}
 
-  public scrobble(text: string): Observable<LastFmScrobbleResponse> {
+  public scrobble(text: string): Observable<ScrobbleResponseType> {
     const tracks = this.bulkScrobbleConverter.convert(text);
     return this.scrobbleTracks(tracks);
   }
 
-  private scrobbleTracks(tracks: LastFmSimpleTrack[]): Observable<LastFmScrobbleResponse> {
+  private scrobbleTracks(tracks: LastFmSimpleTrack[]): Observable<ScrobbleResponseType> {
     const tracksToScrobble = tracks.map((track) => this.scrobbleService.scrobble(track));
     return forkJoin(tracksToScrobble).pipe(map((response) => response[0]));
   }

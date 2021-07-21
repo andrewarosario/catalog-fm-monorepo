@@ -13,7 +13,7 @@ const makeSut = () => {
   return { service, storageServiceSpy };
 };
 
-fdescribe('ScrobbleCacheStorageService', () => {
+describe('ScrobbleCacheStorageService', () => {
   it('should be created', () => {
     const { service } = makeSut();
     expect(service).toBeTruthy();

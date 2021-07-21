@@ -13,7 +13,7 @@ const makeSut = () => {
   return { service, storageServiceSpy };
 };
 
-describe('ScrobbleCacheStorageService', () => {
+fdescribe('ScrobbleCacheStorageService', () => {
   it('should be created', () => {
     const { service } = makeSut();
     expect(service).toBeTruthy();
@@ -25,6 +25,16 @@ describe('ScrobbleCacheStorageService', () => {
       tick();
       expect(storageServiceSpy.getItem).toHaveBeenCalledOnceWith('scrobbles');
       expect(scrobbles).toEqual(mockLastFmSimpleTrackScrobble());
+    });
+  }));
+
+  it('should get scrobbles with empty cache', fakeAsync(() => {
+    const { service, storageServiceSpy } = makeSut();
+    storageServiceSpy.getItem.and.returnValue(Promise.resolve(undefined));
+    service.getScrobbles().subscribe((scrobbles) => {
+      tick();
+      expect(storageServiceSpy.getItem).toHaveBeenCalledOnceWith('scrobbles');
+      expect(scrobbles).toEqual([]);
     });
   }));
 

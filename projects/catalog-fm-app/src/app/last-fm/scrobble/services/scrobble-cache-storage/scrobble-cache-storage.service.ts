@@ -11,13 +11,15 @@ export class ScrobbleCacheStorageService {
   constructor(private storageService: StorageService) {}
 
   getScrobbles(): Observable<LastFmSimpleTrack[]> {
-    return from(this.storageService.getItem<LastFmSimpleTrack[]>('scrobbles'));
+    return from(this.storageService.getItem<LastFmSimpleTrack[]>('scrobbles')).pipe(
+      map((scrobbles) => scrobbles ?? [])
+    );
   }
 
   addScrobble(track: LastFmSimpleTrack): Observable<LastFmSimpleTrack[]> {
     return this.getScrobbles().pipe(
       map((scrobbles) => {
-        const newCache = [...(scrobbles || []), track];
+        const newCache = [...scrobbles, track];
         this.storageService.setItem('scrobbles', newCache);
         return newCache;
       })

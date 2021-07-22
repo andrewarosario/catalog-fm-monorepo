@@ -34,7 +34,7 @@ describe('ScrobbleOnlineSyncService', () => {
     expect(service).toBeTruthy();
   });
 
-  fit('should not emit value when user is not logged', () => {
+  it('should not emit value when user is not logged', () => {
     const {
       service,
       onlineLoggedUserLastFmServiceSpy,
@@ -52,7 +52,7 @@ describe('ScrobbleOnlineSyncService', () => {
     expect(scrobbleServiceSpy.scrobble).not.toHaveBeenCalled();
   });
 
-  fit('should not emit value when there is no scrobble in cache', () => {
+  it('should not emit value when there is no scrobble in cache', () => {
     const { service, scrobbleCacheStorageServiceSpy, scrobbleServiceSpy } = makeSut();
 
     scrobbleCacheStorageServiceSpy.getScrobbles.and.returnValue(of([]));
@@ -66,7 +66,7 @@ describe('ScrobbleOnlineSyncService', () => {
     expect(scrobbleServiceSpy.scrobble).not.toHaveBeenCalled();
   });
 
-  fit('should emit value when there is scrobble in cache', () => {
+  it('should emit value when there is scrobble in cache', () => {
     const { service, scrobbleCacheStorageServiceSpy, scrobbleServiceSpy } = makeSut();
     const numberOfTracks = mockLastFmSimpleTrackScrobble().length;
 

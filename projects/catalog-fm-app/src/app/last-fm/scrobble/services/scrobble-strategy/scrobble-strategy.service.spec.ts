@@ -1,4 +1,4 @@
-import { OnlineLoggedUserLastFmSyncService } from '@/core/auth/services/online-logged-user-last-fm-sync/online-logged-user-last-fm-sync.service';
+import { OnlineLoggedUserLastFmSyncService } from '@/auth/services/online-logged-user-last-fm-sync/online-logged-user-last-fm-sync.service';
 import { MOCK_LAST_FM_SIMPLE_TRACK } from 'last-fm';
 import { ScrobbleResponseType } from '../../enums/scrobble-response-type';
 import { makeScrobbleCacheService } from '../scrobble-cache/scrobble-cache.service.mock';

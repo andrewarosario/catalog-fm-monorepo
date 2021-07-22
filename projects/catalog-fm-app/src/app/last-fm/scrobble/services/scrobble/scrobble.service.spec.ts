@@ -1,11 +1,11 @@
-import { makeAuthUserStore } from '@/core/auth/store/auth-user.store.mock';
+import { makeAuthUserStore } from '@/auth/store/auth-user.store.mock';
 import { MOCK_LAST_FM_SCROBBLE_RESPONSE, MOCK_LAST_FM_SIMPLE_TRACK } from 'last-fm';
 import { LastFmTrackScrobbleService } from 'last-fm';
 import { of } from 'rxjs';
 
 import { ScrobbleService } from './scrobble.service';
 import { DateHelper } from 'catalog-fm-utils';
-import { mockAuthUser } from '@/core/auth/mocks/auth-user.mock';
+import { mockAuthUser } from '@/auth/mocks/auth-user.mock';
 import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
 
 const makeLastFmTrackScrobbleService = (): jasmine.SpyObj<LastFmTrackScrobbleService> => {

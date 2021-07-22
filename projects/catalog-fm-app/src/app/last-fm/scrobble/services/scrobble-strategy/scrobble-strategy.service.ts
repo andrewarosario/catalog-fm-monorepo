@@ -1,4 +1,4 @@
-import { OnlineLoggedUserLastFmSyncService } from '@/core/auth/services/online-logged-user-last-fm-sync/online-logged-user-last-fm-sync.service';
+import { OnlineLoggedUserLastFmSyncService } from '@/auth/services/online-logged-user-last-fm-sync/online-logged-user-last-fm-sync.service';
 import { Injectable } from '@angular/core';
 import { LastFmSimpleTrack } from 'last-fm';
 import { Observable } from 'rxjs';

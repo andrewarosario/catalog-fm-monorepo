@@ -1,4 +1,4 @@
-import { OnlineLoggedUserLastFmService } from '@/core/auth/services/online-logged-user-last-fm/online-logged-user-last-fm.service';
+import { OnlineLoggedUserLastFmService } from '@/auth/services/online-logged-user-last-fm/online-logged-user-last-fm.service';
 import { of } from 'rxjs';
 import { mockLastFmSimpleTrackScrobble } from '../../bulk-scrobble/mocks/last-fm-simple-track-scrobble.mock';
 import { makeScrobbleCacheStorageServiceSpy } from '../scrobble-cache-storage/scrobble-cache-storage.service.mock';

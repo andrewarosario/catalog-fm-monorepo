@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LastFmTrackScrobbleService, LastFmSimpleTrack, LastFmScrobbleResponse } from 'last-fm';
-import { AuthUserStore } from '@/core/auth/store/auth-user.store';
+import { AuthUserStore } from '@/auth/store/auth-user.store';
 import { Observable } from 'rxjs';
 import { DateHelper } from 'catalog-fm-utils';
 import { mapTo } from 'rxjs/operators';

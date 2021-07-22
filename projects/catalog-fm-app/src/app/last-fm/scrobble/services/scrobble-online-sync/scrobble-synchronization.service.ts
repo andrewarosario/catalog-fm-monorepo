@@ -1,4 +1,4 @@
-import { OnlineLoggedUserLastFmService } from '@/core/auth/services/online-logged-user-last-fm/online-logged-user-last-fm.service';
+import { OnlineLoggedUserLastFmService } from '@/auth/services/online-logged-user-last-fm/online-logged-user-last-fm.service';
 import { Injectable } from '@angular/core';
 import { LastFmSimpleTrack } from 'last-fm';
 import { forkJoin, Observable } from 'rxjs';

@@ -4,7 +4,7 @@ import { mockLastFmSimpleTrackScrobble } from '../../bulk-scrobble/mocks/last-fm
 import { makeScrobbleCacheStorageServiceSpy } from '../scrobble-cache-storage/scrobble-cache-storage.service.mock';
 import { makeScrobbleService } from '../scrobble/scrobble.service.mock';
 
-import { ScrobbleOnlineSyncService } from './scrobble-online-sync.service';
+import { ScrobbleSynchronizationService } from './scrobble-synchronization.service';
 
 const makeSut = () => {
   const onlineLoggedUserLastFmServiceSpy = jasmine.createSpyObj<OnlineLoggedUserLastFmService>(
@@ -16,7 +16,7 @@ const makeSut = () => {
   const scrobbleCacheStorageServiceSpy = makeScrobbleCacheStorageServiceSpy();
   const scrobbleServiceSpy = makeScrobbleService();
 
-  const service = new ScrobbleOnlineSyncService(
+  const service = new ScrobbleSynchronizationService(
     onlineLoggedUserLastFmServiceSpy,
     scrobbleCacheStorageServiceSpy,
     scrobbleServiceSpy
@@ -28,7 +28,7 @@ const makeSut = () => {
     scrobbleServiceSpy,
   };
 };
-describe('ScrobbleOnlineSyncService', () => {
+describe('ScrobbleSynchronizationService', () => {
   it('should be created', () => {
     const { service } = makeSut();
     expect(service).toBeTruthy();

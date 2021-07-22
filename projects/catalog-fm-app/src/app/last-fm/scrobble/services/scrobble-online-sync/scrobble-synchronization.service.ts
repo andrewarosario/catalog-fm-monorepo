@@ -1,8 +1,8 @@
 import { OnlineLoggedUserLastFmService } from '@/core/auth/services/online-logged-user-last-fm/online-logged-user-last-fm.service';
 import { Injectable } from '@angular/core';
 import { LastFmSimpleTrack } from 'last-fm';
-import { forkJoin, Observable, zip } from 'rxjs';
-import { filter, map, switchMap, switchMapTo, tap } from 'rxjs/operators';
+import { forkJoin, Observable } from 'rxjs';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { ScrobbleResponseType } from '../../enums/scrobble-response-type';
 import { ScrobbleCacheStorageService } from '../scrobble-cache-storage/scrobble-cache-storage.service';
 import { ScrobbleService } from '../scrobble/scrobble.service';
@@ -10,7 +10,7 @@ import { ScrobbleService } from '../scrobble/scrobble.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ScrobbleOnlineSyncService {
+export class ScrobbleSynchronizationService {
   constructor(
     private onlineLoggedUserLastFmService: OnlineLoggedUserLastFmService,
     private scrobbleCacheStorageService: ScrobbleCacheStorageService,

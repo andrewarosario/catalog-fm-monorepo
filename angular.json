@@ -28,10 +28,16 @@
             "inlineStyleLanguage": "less",
             "assets": [
               "projects/catalog-fm-app/src/favicon.ico",
-              "projects/catalog-fm-app/src/assets"
+              "projects/catalog-fm-app/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
-              "projects/catalog-fm-app/src/styles.less"
+              "projects/catalog-fm-app/src/styles.less",
+              "projects/catalog-fm-ui/src/styles.less"
             ],
             "scripts": []
           },

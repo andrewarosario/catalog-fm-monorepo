@@ -34,7 +34,7 @@ describe('ScrobbleSynchronizationService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should not emit value when user is not logged', () => {
+  it('should not emit value when user is not logged or offline', () => {
     const {
       service,
       onlineLoggedUserLastFmServiceSpy,
@@ -48,8 +48,8 @@ describe('ScrobbleSynchronizationService', () => {
 
     expect(emmitedValue).toBeUndefined();
     expect(scrobbleCacheStorageServiceSpy.getScrobbles).not.toHaveBeenCalled();
-    expect(scrobbleCacheStorageServiceSpy.clear).not.toHaveBeenCalled();
     expect(scrobbleServiceSpy.scrobble).not.toHaveBeenCalled();
+    expect(scrobbleCacheStorageServiceSpy.clear).not.toHaveBeenCalled();
   });
 
   it('should not emit value when there is no scrobble in cache', () => {
@@ -62,20 +62,20 @@ describe('ScrobbleSynchronizationService', () => {
 
     expect(emmitedValue).toBeUndefined();
     expect(scrobbleCacheStorageServiceSpy.getScrobbles).toHaveBeenCalled();
-    expect(scrobbleCacheStorageServiceSpy.clear).not.toHaveBeenCalled();
     expect(scrobbleServiceSpy.scrobble).not.toHaveBeenCalled();
+    expect(scrobbleCacheStorageServiceSpy.clear).not.toHaveBeenCalled();
   });
 
-  it('should emit value when there is scrobble in cache', () => {
+  it('should emit scrobbled tracks length when there is scrobble in cache', () => {
     const { service, scrobbleCacheStorageServiceSpy, scrobbleServiceSpy } = makeSut();
-    const numberOfTracks = mockLastFmSimpleTrackScrobble().length;
+    const tracksLength = mockLastFmSimpleTrackScrobble().length;
 
     let emmitedValue;
     service.synchronizeScrobbles().subscribe((response) => (emmitedValue = response));
 
-    expect(emmitedValue).toBe(numberOfTracks);
+    expect(emmitedValue).toBe(tracksLength);
     expect(scrobbleCacheStorageServiceSpy.getScrobbles).toHaveBeenCalled();
+    expect(scrobbleServiceSpy.scrobble).toHaveBeenCalledTimes(tracksLength);
     expect(scrobbleCacheStorageServiceSpy.clear).toHaveBeenCalled();
-    expect(scrobbleServiceSpy.scrobble).toHaveBeenCalledTimes(numberOfTracks);
   });
 });

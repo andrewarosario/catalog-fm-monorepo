@@ -1,4 +1,4 @@
-import { ScrobbleSynchronizationService } from '@/last-fm/scrobble/services/scrobble-online-sync/scrobble-synchronization.service';
+import { ScrobbleSynchronizationService } from '@/last-fm/scrobble/services/scrobble-synchronization/scrobble-synchronization.service';
 import { Injectable } from '@angular/core';
 
 @Injectable({

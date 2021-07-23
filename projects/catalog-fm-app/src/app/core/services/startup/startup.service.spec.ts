@@ -1,4 +1,4 @@
-import { ScrobbleSynchronizationService } from '@/last-fm/scrobble/services/scrobble-online-sync/scrobble-synchronization.service';
+import { ScrobbleSynchronizationService } from '@/last-fm/scrobble/services/scrobble-synchronization/scrobble-synchronization.service';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 

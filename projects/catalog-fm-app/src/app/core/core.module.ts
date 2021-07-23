@@ -1,15 +1,9 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { StartupFactory } from './factories/startup/startup.factory';
-import { StartupService } from './services/startup/startup.service';
+import { NgModule } from '@angular/core';
+import { SCROBBLE_SYNCHRONIZATION_INITIALIZER } from './providers/scrobble-synchronization-initializer.provider';
 
 @NgModule({
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: StartupFactory,
-      deps: [StartupService],
-      multi: true,
-    },
+    SCROBBLE_SYNCHRONIZATION_INITIALIZER
   ],
 })
 export class CoreModule {}

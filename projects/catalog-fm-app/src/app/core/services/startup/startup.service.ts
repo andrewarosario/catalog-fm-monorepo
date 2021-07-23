@@ -8,6 +8,8 @@ export class StartupService {
   constructor(private scrobbleSynchronizationService: ScrobbleSynchronizationService) {}
 
   load(): void {
-    this.scrobbleSynchronizationService.synchronizeScrobbles().subscribe();
+    this.scrobbleSynchronizationService.synchronizeScrobbles().subscribe((tracks) => {
+      alert(`${tracks} tracks scrobbled`);
+    });
   }
 }

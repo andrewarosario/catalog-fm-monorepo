@@ -11,11 +11,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IconsModule } from '../ng-zorro/icons.module';
+import { DashboardContentComponent } from './dashboard-content/dashboard-content.component';
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, DashboardContentComponent],
   imports: [
     CommonModule,
     NzLayoutModule,

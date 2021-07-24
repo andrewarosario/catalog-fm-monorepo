@@ -1,14 +1,11 @@
 <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-  <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
+  <li nz-submenu nzOpen nzTitle="Scrobble" nzIcon="subnode">
     <ul>
       <li nz-menu-item nzMatchRouter>
-        <a routerLink="/welcome">Welcome</a>
+        <a [routerLink]="['last-fm', 'scrobble', 'manual']">Manual</a>
       </li>
       <li nz-menu-item nzMatchRouter>
-        <a>Monitor</a>
-      </li>
-      <li nz-menu-item nzMatchRouter>
-        <a>Workplace</a>
+        <a [routerLink]="['last-fm', 'scrobble', 'bulk']">Bulk</a>
       </li>
     </ul>
   </li>

@@ -15,6 +15,7 @@ import { DashboardContentComponent } from './dashboard-content/dashboard-content
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 import { DashboardLogoComponent } from './dashboard-logo/dashboard-logo.component';
 import { RouterModule } from '@angular/router';
+import { DashboardMenuComponent } from './dashboard-menu/dashboard-menu.component';
 
 registerLocaleData(en);
 
@@ -24,6 +25,7 @@ registerLocaleData(en);
     DashboardContentComponent,
     DashboardHeaderComponent,
     DashboardLogoComponent,
+    DashboardMenuComponent,
   ],
   imports: [
     CommonModule,

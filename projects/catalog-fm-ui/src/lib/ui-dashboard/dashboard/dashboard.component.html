@@ -36,18 +36,13 @@
     </nz-sider>
     <nz-layout>
       <nz-header>
-        <div class="app-header">
-          <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-              <i class="trigger"
-                 nz-icon
-                 [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-              ></i>
-          </span>
-        </div>
+        <ui-dashboard-header
+          [isCollapsed]="isCollapsed"
+          (collapse)="isCollapsed = $event">
+        </ui-dashboard-header>
       </nz-header>
       <ui-dashboard-content>
         <ng-content></ng-content>
       </ui-dashboard-content>
     </nz-layout>
   </nz-layout>
-  

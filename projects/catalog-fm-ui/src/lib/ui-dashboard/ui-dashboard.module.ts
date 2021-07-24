@@ -12,11 +12,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IconsModule } from '../ng-zorro/icons.module';
 import { DashboardContentComponent } from './dashboard-content/dashboard-content.component';
+import { DashboardSiderComponent } from './dashboard-sider/dashboard-sider.component';
+import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [DashboardComponent, DashboardContentComponent],
+  declarations: [DashboardComponent, DashboardContentComponent, DashboardSiderComponent, DashboardHeaderComponent],
   imports: [
     CommonModule,
     NzLayoutModule,

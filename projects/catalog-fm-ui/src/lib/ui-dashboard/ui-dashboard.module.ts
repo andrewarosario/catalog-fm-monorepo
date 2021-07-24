@@ -13,21 +13,29 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { IconsModule } from '../ng-zorro/icons.module';
 import { DashboardContentComponent } from './dashboard-content/dashboard-content.component';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
+import { DashboardLogoComponent } from './dashboard-logo/dashboard-logo.component';
+import { RouterModule } from '@angular/router';
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [DashboardComponent, DashboardContentComponent, DashboardHeaderComponent],
+  declarations: [
+    DashboardComponent,
+    DashboardContentComponent,
+    DashboardHeaderComponent,
+    DashboardLogoComponent,
+  ],
   imports: [
     CommonModule,
+    RouterModule,
     NzLayoutModule,
     NzMenuModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    IconsModule
+    IconsModule,
   ],
   exports: [DashboardComponent],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
 })
-export class UiDashboardModule { }
+export class UiDashboardModule {}

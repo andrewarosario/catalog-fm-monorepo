@@ -1,0 +1,20 @@
+<nz-layout class="app-layout">
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <ui-dashboard-logo></ui-dashboard-logo>
+    <ui-dashboard-menu [isCollapsed]="isCollapsed"></ui-dashboard-menu>
+  </nz-sider>
+  <nz-layout>
+    <ui-dashboard-header [isCollapsed]="isCollapsed" (collapse)="isCollapsed = $event">
+    </ui-dashboard-header>
+    <ui-dashboard-content>
+      <ng-content></ng-content>
+    </ui-dashboard-content>
+  </nz-layout>
+</nz-layout>

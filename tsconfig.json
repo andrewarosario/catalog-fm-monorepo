@@ -14,6 +14,10 @@
         "dist/catalog-fm-utils/catalog-fm-utils",
         "dist/catalog-fm-utils"
       ],
+      "catalog-fm-ui": [
+        "dist/catalog-fm-ui/catalog-fm-ui",
+        "dist/catalog-fm-ui"
+      ],
       "last-fm": [
         "dist/last-fm/last-fm",
         "dist/last-fm"

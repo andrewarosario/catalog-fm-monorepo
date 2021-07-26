@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { BulkScrobblePageComponent } from './bulk-scrobble-page.component';
 import { BulkScrobbleService } from '../../services/bulk-scrobble/bulk-scrobble.service';
-import { ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
+import { UiFormModule } from 'catalog-fm-ui';
 
 const getSubmitButton = () => screen.getByTestId('submit') as HTMLButtonElement;
 const getScrobbleInput = () => screen.getByTestId('scrobble-input') as HTMLTextAreaElement;
@@ -18,7 +18,7 @@ const makeBulkScrobbleService = () => {
 const setup = async () => {
   const bulkScrobbleServiceSpy = makeBulkScrobbleService();
   await render(BulkScrobblePageComponent, {
-    imports: [ReactiveFormsModule],
+    imports: [UiFormModule],
     providers: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],
   });
 

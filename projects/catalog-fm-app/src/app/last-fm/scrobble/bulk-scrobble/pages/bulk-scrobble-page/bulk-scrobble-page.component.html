@@ -1,5 +1,7 @@
-<div>
+<div class="scrobble-form">
   <textarea
+    nz-input
+    nzAutosize
     data-testid="scrobble-input"
     [formControl]="scrobbleForm"
     rows="20"
@@ -9,7 +11,14 @@
     Porcupine Tree - Trains"
   ></textarea>
 
-  <button (click)="scrobble()" [disabled]="scrobbleForm.invalid" data-testid="submit">
+  <button
+    nz-button
+    nzType="primary"
+    (click)="scrobble()"
+    [disabled]="scrobbleForm.invalid"
+    data-testid="submit"
+  >
+    <i nz-icon nzType="subnode"></i>
     Scrobble
   </button>
 </div>

@@ -1,10 +1,10 @@
 import { ScrobbleSynchronizationService } from '@/last-fm/scrobble/services/scrobble-synchronization/scrobble-synchronization.service';
 import { APP_INITIALIZER, Provider } from '@angular/core';
-import { MessageService } from 'catalog-fm-ui';
+import { UiMessageService } from 'catalog-fm-ui';
 
 function ScrobbleSynchronizationFactory(
   scrobbleSynchronizationService: ScrobbleSynchronizationService,
-  messageService: MessageService
+  messageService: UiMessageService
 ) {
   return () => {
     scrobbleSynchronizationService.synchronizeScrobbles().subscribe((tracks) => {
@@ -16,6 +16,6 @@ function ScrobbleSynchronizationFactory(
 export const SCROBBLE_SYNCHRONIZATION_INITIALIZER: Provider = {
   provide: APP_INITIALIZER,
   useFactory: ScrobbleSynchronizationFactory,
-  deps: [ScrobbleSynchronizationService, MessageService],
+  deps: [ScrobbleSynchronizationService, UiMessageService],
   multi: true,
 };

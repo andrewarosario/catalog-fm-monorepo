@@ -5,6 +5,6 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   providedIn: 'root',
   useClass: NzMessageService,
 })
-export abstract class MessageService {
+export abstract class UiMessageService {
   abstract success(message: string): void;
 }

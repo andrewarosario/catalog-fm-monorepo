@@ -10,12 +10,12 @@ import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { IconsModule } from '../ng-zorro/icons.module';
 import { DashboardContentComponent } from './dashboard-content/dashboard-content.component';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 import { DashboardLogoComponent } from './dashboard-logo/dashboard-logo.component';
 import { RouterModule } from '@angular/router';
 import { DashboardMenuComponent } from './dashboard-menu/dashboard-menu.component';
+import { UiIconModule } from '../ui-icon/icon.module';
 
 registerLocaleData(en);
 
@@ -35,7 +35,7 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    IconsModule,
+    UiIconModule,
   ],
   exports: [DashboardComponent],
   providers: [{ provide: NZ_I18N, useValue: en_US }],

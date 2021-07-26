@@ -1,14 +1,31 @@
-<form [formGroup]="form">
-  <label>Artist</label>
-  <input data-testid="artist" formControlName="artist" />
+<form nz-form [formGroup]="form" (ngSubmit)="scrobble()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="artist">Artist</nz-form-label>
+    <nz-form-control [nzSm]="20" [nzXs]="24">
+      <input nz-input nzSize="large" data-testid="artist" formControlName="artist" id="artist" />
+    </nz-form-control>
+  </nz-form-item>
 
-  <label>Track</label>
-  <input data-testid="track" formControlName="track" />
+  <nz-form-item>
+    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="track">Track</nz-form-label>
+    <nz-form-control [nzSm]="20" [nzXs]="24">
+      <input nz-input data-testid="track" formControlName="track" id="track" />
+    </nz-form-control>
+  </nz-form-item>
 
-  <label>Album</label>
-  <input data-testid="album" formControlName="album" />
+  <nz-form-item>
+    <nz-form-label [nzSm]="2" [nzXs]="24" nzFor="album">Album</nz-form-label>
+    <nz-form-control [nzSm]="20" [nzXs]="24">
+      <input nz-input data-testid="album" formControlName="album" id="album" />
+    </nz-form-control>
+  </nz-form-item>
 
-  <button (click)="scrobble()" [disabled]="form.invalid" data-testid="submit">
-    Scrobble
-  </button>
+  <nz-form-item>
+    <nz-form-control [nzOffset]="2" [nzSpan]="12">
+      <button nz-button nzType="primary" [disabled]="form.invalid" data-testid="submit">
+        <i nz-icon nzType="subnode"></i>
+        Scrobble
+      </button>
+    </nz-form-control>
+  </nz-form-item>
 </form>

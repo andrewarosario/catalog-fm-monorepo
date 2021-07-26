@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { ManualScrobbleRoutingModule } from './manual-scrobble-routing.module';
 import { ManualScrobblePageComponent } from './pages/manual-scrobble-page/manual-scrobble-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { IconsModule, UiFormModule } from 'catalog-fm-ui';
 
 @NgModule({
   declarations: [ManualScrobblePageComponent],
-  imports: [CommonModule, ReactiveFormsModule, ManualScrobbleRoutingModule],
+  imports: [CommonModule, UiFormModule, ManualScrobbleRoutingModule, IconsModule],
 })
 export class ManualScrobbleModule {}

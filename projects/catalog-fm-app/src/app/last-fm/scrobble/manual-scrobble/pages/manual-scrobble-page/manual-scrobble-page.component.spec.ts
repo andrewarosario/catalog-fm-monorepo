@@ -1,9 +1,8 @@
 import { ScrobbleStrategyService } from '@/last-fm/scrobble/services/scrobble-strategy/scrobble-strategy.service';
-import { ScrobbleService } from '@/last-fm/scrobble/services/scrobble/scrobble.service';
 import { makeScrobbleService } from '@/last-fm/scrobble/services/scrobble/scrobble.service.mock';
-import { ReactiveFormsModule } from '@angular/forms';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
+import { UiFormModule } from 'catalog-fm-ui';
 import { MOCK_LAST_FM_SIMPLE_TRACK } from 'last-fm';
 import { ManualScrobblePageComponent } from './manual-scrobble-page.component';
 
@@ -11,7 +10,7 @@ const getSubmitButton = () => screen.getByTestId('submit') as HTMLButtonElement;
 const setup = async () => {
   const scrobbleServiceSpy = makeScrobbleService();
   await render(ManualScrobblePageComponent, {
-    imports: [ReactiveFormsModule],
+    imports: [UiFormModule],
     providers: [{ provide: ScrobbleStrategyService, useValue: scrobbleServiceSpy }],
   });
   return { scrobbleServiceSpy };

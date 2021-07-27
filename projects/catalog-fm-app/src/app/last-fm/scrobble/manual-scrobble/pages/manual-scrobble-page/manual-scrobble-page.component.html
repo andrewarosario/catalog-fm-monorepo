@@ -22,7 +22,13 @@
 
   <nz-form-item>
     <nz-form-control [nzOffset]="2" [nzSpan]="12">
-      <button nz-button nzType="primary" [disabled]="form.invalid" data-testid="submit">
+      <button
+        uiDisableOnProgress
+        nz-button
+        nzType="primary"
+        [disabled]="form.invalid"
+        data-testid="submit"
+      >
         <i nz-icon nzType="subnode"></i>
         Scrobble
       </button>

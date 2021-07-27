@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'ui-progress-bar',
-  templateUrl: './progress-bar.component.html',
-  styleUrls: ['./progress-bar.component.css'],
+  template: '<ng-progress></ng-progress>',
 })
 export class ProgressBarComponent {}

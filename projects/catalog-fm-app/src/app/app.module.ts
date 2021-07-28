@@ -6,7 +6,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { UiDashboardModule, UiZorroModule, UiProgressModule } from 'catalog-fm-ui';
+import { UiDashboardModule, UiProgressModule, UiMessageModule } from 'catalog-fm-ui';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -14,7 +14,7 @@ import { UiDashboardModule, UiZorroModule, UiProgressModule } from 'catalog-fm-u
     BrowserModule,
     AppRoutingModule,
     LastFmModule.forRoot(environment.lastFmKey),
-    UiZorroModule,
+    UiMessageModule,
     UiProgressModule,
     UiDashboardModule,
   ],

@@ -36,7 +36,7 @@ describe('ScrobbleSynchronizationService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should not emit value when user is not logged or offline', () => {
+  it('should not scrobble when user is not logged or offline', () => {
     const {
       service,
       onlineLoggedUserLastFmServiceSpy,
@@ -52,7 +52,7 @@ describe('ScrobbleSynchronizationService', () => {
     expect(scrobbleCacheStorageServiceSpy.clear).not.toHaveBeenCalled();
   });
 
-  it('should not emit value when there is no scrobble in cache', () => {
+  it('should not scrobble when there is no scrobble in cache', () => {
     const { service, scrobbleCacheStorageServiceSpy, scrobbleServiceSpy } = makeSut();
 
     scrobbleCacheStorageServiceSpy.getScrobbles.and.returnValue(of([]));
@@ -64,7 +64,7 @@ describe('ScrobbleSynchronizationService', () => {
     expect(scrobbleCacheStorageServiceSpy.clear).not.toHaveBeenCalled();
   });
 
-  it('should emit scrobbled tracks length when there is scrobble in cache', () => {
+  it('should scrobble tracks when there is scrobble in cache', () => {
     const { service, scrobbleCacheStorageServiceSpy, scrobbleServiceSpy } = makeSut();
     const tracksLength = mockLastFmSimpleTrackScrobble().length;
 

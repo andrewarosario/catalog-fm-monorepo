@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { UiMessageService } from 'catalog-fm-ui';
 import { LastFmSimpleTrack } from 'last-fm';
 import { forkJoin, Observable } from 'rxjs';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { filter, switchMap, tap } from 'rxjs/operators';
 import { ScrobbleMessage } from '../../decorators/scrobble-message.decorator';
 import { ScrobbleResponseType } from '../../enums/scrobble-response-type';
 import { ScrobbleCacheStorageService } from '../scrobble-cache-storage/scrobble-cache-storage.service';
@@ -21,12 +21,11 @@ export class ScrobbleSynchronizationService {
   ) {}
 
   @ScrobbleMessage()
-  synchronizeScrobbles(): Observable<number> {
+  synchronizeScrobbles(): Observable<ScrobbleResponseType[]> {
     return this.isOnlineAndLogged().pipe(
       switchMap(() => this.getScrobbleCache()),
       switchMap((tracks) => this.scrobbleTracksInCache(tracks)),
-      tap(() => this.removeTracksInCache()),
-      map((scrobbledTracks) => scrobbledTracks.length)
+      tap(() => this.removeTracksInCache())
     );
   }
 

@@ -1,8 +1,10 @@
 import { OnlineLoggedUserLastFmService } from '@/auth/services/online-logged-user-last-fm/online-logged-user-last-fm.service';
 import { Injectable } from '@angular/core';
+import { UiMessageService } from 'catalog-fm-ui';
 import { LastFmSimpleTrack } from 'last-fm';
 import { forkJoin, Observable } from 'rxjs';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { ScrobbleMessage } from '../../decorators/scrobble-message.decorator';
 import { ScrobbleResponseType } from '../../enums/scrobble-response-type';
 import { ScrobbleCacheStorageService } from '../scrobble-cache-storage/scrobble-cache-storage.service';
 import { ScrobbleService } from '../scrobble/scrobble.service';
@@ -14,9 +16,11 @@ export class ScrobbleSynchronizationService {
   constructor(
     private onlineLoggedUserLastFmService: OnlineLoggedUserLastFmService,
     private scrobbleCacheStorageService: ScrobbleCacheStorageService,
-    private scrobbleService: ScrobbleService
+    private scrobbleService: ScrobbleService,
+    public messageService: UiMessageService
   ) {}
 
+  @ScrobbleMessage()
   synchronizeScrobbles(): Observable<number> {
     return this.isOnlineAndLogged().pipe(
       switchMap(() => this.getScrobbleCache()),

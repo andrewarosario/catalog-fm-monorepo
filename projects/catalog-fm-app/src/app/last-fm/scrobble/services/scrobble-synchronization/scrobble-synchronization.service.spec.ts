@@ -1,4 +1,5 @@
 import { OnlineLoggedUserLastFmService } from '@/auth/services/online-logged-user-last-fm/online-logged-user-last-fm.service';
+import { UiMessageService } from 'catalog-fm-ui';
 import { of } from 'rxjs';
 import { mockLastFmSimpleTrackScrobble } from '../../bulk-scrobble/mocks/last-fm-simple-track-scrobble.mock';
 import { makeScrobbleCacheStorageServiceSpy } from '../scrobble-cache-storage/scrobble-cache-storage.service.mock';
@@ -19,7 +20,8 @@ const makeSut = () => {
   const service = new ScrobbleSynchronizationService(
     onlineLoggedUserLastFmServiceSpy,
     scrobbleCacheStorageServiceSpy,
-    scrobbleServiceSpy
+    scrobbleServiceSpy,
+    new UiMessageService()
   );
   return {
     service,
@@ -43,10 +45,8 @@ describe('ScrobbleSynchronizationService', () => {
     } = makeSut();
     onlineLoggedUserLastFmServiceSpy.isOnlineAndLogged.and.returnValue(of(false));
 
-    let emmitedValue;
-    service.synchronizeScrobbles().subscribe((response) => (emmitedValue = response));
+    service.synchronizeScrobbles();
 
-    expect(emmitedValue).toBeUndefined();
     expect(scrobbleCacheStorageServiceSpy.getScrobbles).not.toHaveBeenCalled();
     expect(scrobbleServiceSpy.scrobble).not.toHaveBeenCalled();
     expect(scrobbleCacheStorageServiceSpy.clear).not.toHaveBeenCalled();
@@ -57,10 +57,8 @@ describe('ScrobbleSynchronizationService', () => {
 
     scrobbleCacheStorageServiceSpy.getScrobbles.and.returnValue(of([]));
 
-    let emmitedValue;
-    service.synchronizeScrobbles().subscribe((response) => (emmitedValue = response));
+    service.synchronizeScrobbles();
 
-    expect(emmitedValue).toBeUndefined();
     expect(scrobbleCacheStorageServiceSpy.getScrobbles).toHaveBeenCalled();
     expect(scrobbleServiceSpy.scrobble).not.toHaveBeenCalled();
     expect(scrobbleCacheStorageServiceSpy.clear).not.toHaveBeenCalled();
@@ -70,10 +68,8 @@ describe('ScrobbleSynchronizationService', () => {
     const { service, scrobbleCacheStorageServiceSpy, scrobbleServiceSpy } = makeSut();
     const tracksLength = mockLastFmSimpleTrackScrobble().length;
 
-    let emmitedValue;
-    service.synchronizeScrobbles().subscribe((response) => (emmitedValue = response));
+    service.synchronizeScrobbles();
 
-    expect(emmitedValue).toBe(tracksLength);
     expect(scrobbleCacheStorageServiceSpy.getScrobbles).toHaveBeenCalled();
     expect(scrobbleServiceSpy.scrobble).toHaveBeenCalledTimes(tracksLength);
     expect(scrobbleCacheStorageServiceSpy.clear).toHaveBeenCalled();

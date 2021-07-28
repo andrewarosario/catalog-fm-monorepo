@@ -20,7 +20,7 @@ export class BulkScrobblePageComponent {
   ) {}
 
   @ScrobbleMessage()
-  scrobble(): Observable<ScrobbleResponseType> {
+  scrobble(): Observable<ScrobbleResponseType[]> {
     return this.bulkScrobbleService.scrobble(this.scrobbleForm.value);
   }
 }

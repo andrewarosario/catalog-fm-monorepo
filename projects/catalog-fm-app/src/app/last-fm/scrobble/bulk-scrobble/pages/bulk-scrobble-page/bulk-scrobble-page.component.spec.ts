@@ -11,7 +11,7 @@ const getScrobbleInput = () => screen.getByTestId('scrobble-input') as HTMLTextA
 
 const makeBulkScrobbleService = () => {
   return jasmine.createSpyObj<BulkScrobbleService>('BulkScrobbleService', {
-    scrobble: of(ScrobbleResponseType.Success),
+    scrobble: of([ScrobbleResponseType.Success]),
   });
 };
 

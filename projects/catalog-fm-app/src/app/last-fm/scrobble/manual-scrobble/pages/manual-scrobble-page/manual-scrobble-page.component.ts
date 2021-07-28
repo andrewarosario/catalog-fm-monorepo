@@ -1,6 +1,10 @@
+import { ScrobbleMessage } from '@/last-fm/scrobble/decorators/scrobble-message.decorator';
+import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
 import { ScrobbleStrategyService } from '@/last-fm/scrobble/services/scrobble-strategy/scrobble-strategy.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UiMessageService } from 'catalog-fm-ui';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-manual-scrobble-page',
@@ -10,14 +14,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ManualScrobblePageComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private scrobbleService: ScrobbleStrategyService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private scrobbleService: ScrobbleStrategyService,
+    public messageService: UiMessageService
+  ) {}
 
   ngOnInit(): void {
     this.form = this.createForm();
   }
 
-  scrobble(): void {
-    this.scrobbleService.scrobble(this.form.value).subscribe();
+  @ScrobbleMessage()
+  scrobble(): Observable<ScrobbleResponseType> {
+    return this.scrobbleService.scrobble(this.form.value);
   }
 
   private createForm(): FormGroup {

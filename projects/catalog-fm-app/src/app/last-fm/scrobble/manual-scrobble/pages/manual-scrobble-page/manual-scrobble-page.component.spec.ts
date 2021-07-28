@@ -2,7 +2,7 @@ import { ScrobbleStrategyService } from '@/last-fm/scrobble/services/scrobble-st
 import { makeScrobbleService } from '@/last-fm/scrobble/services/scrobble/scrobble.service.mock';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
-import { UiFormModule } from 'catalog-fm-ui';
+import { UiFormModule, UiMessageService } from 'catalog-fm-ui';
 import { MOCK_LAST_FM_SIMPLE_TRACK } from 'last-fm';
 import { ManualScrobblePageComponent } from './manual-scrobble-page.component';
 
@@ -11,7 +11,10 @@ const setup = async () => {
   const scrobbleServiceSpy = makeScrobbleService();
   await render(ManualScrobblePageComponent, {
     imports: [UiFormModule],
-    providers: [{ provide: ScrobbleStrategyService, useValue: scrobbleServiceSpy }],
+    providers: [
+      { provide: ScrobbleStrategyService, useValue: scrobbleServiceSpy },
+      UiMessageService,
+    ],
   });
   return { scrobbleServiceSpy };
 };

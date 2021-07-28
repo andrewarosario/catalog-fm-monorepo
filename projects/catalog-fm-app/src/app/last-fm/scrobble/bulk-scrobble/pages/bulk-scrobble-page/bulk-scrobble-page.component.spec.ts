@@ -4,7 +4,7 @@ import { BulkScrobblePageComponent } from './bulk-scrobble-page.component';
 import { BulkScrobbleService } from '../../services/bulk-scrobble/bulk-scrobble.service';
 import { of } from 'rxjs';
 import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
-import { UiFormModule } from 'catalog-fm-ui';
+import { UiFormModule, UiMessageService } from 'catalog-fm-ui';
 
 const getSubmitButton = () => screen.getByTestId('submit') as HTMLButtonElement;
 const getScrobbleInput = () => screen.getByTestId('scrobble-input') as HTMLTextAreaElement;
@@ -19,7 +19,10 @@ const setup = async () => {
   const bulkScrobbleServiceSpy = makeBulkScrobbleService();
   await render(BulkScrobblePageComponent, {
     imports: [UiFormModule],
-    providers: [{ provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy }],
+    providers: [
+      { provide: BulkScrobbleService, useValue: bulkScrobbleServiceSpy },
+      UiMessageService,
+    ],
   });
 
   return { bulkScrobbleServiceSpy };

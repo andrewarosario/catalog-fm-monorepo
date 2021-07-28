@@ -1,5 +1,9 @@
+import { ScrobbleMessage } from '@/last-fm/scrobble/decorators/scrobble-message.decorator';
+import { ScrobbleResponseType } from '@/last-fm/scrobble/enums/scrobble-response-type';
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { UiMessageService } from 'catalog-fm-ui';
+import { Observable } from 'rxjs';
 import { BulkScrobbleService } from '../../services/bulk-scrobble/bulk-scrobble.service';
 
 @Component({
@@ -10,9 +14,13 @@ import { BulkScrobbleService } from '../../services/bulk-scrobble/bulk-scrobble.
 export class BulkScrobblePageComponent {
   scrobbleForm = new FormControl('', Validators.required);
 
-  constructor(private bulkScrobbleService: BulkScrobbleService) {}
+  constructor(
+    private bulkScrobbleService: BulkScrobbleService,
+    public messageService: UiMessageService
+  ) {}
 
-  scrobble(): void {
-    this.bulkScrobbleService.scrobble(this.scrobbleForm.value).subscribe();
+  @ScrobbleMessage()
+  scrobble(): Observable<ScrobbleResponseType> {
+    return this.bulkScrobbleService.scrobble(this.scrobbleForm.value);
   }
 }
